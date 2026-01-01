@@ -12,7 +12,6 @@ This package contains:
 - ✅ `CLAUDE.md` - Main system configuration file
 - ✅ `init-docs.sh` - Initialization script
 - ✅ Complete documentation structure templates
-- ⚠️ **PROMPT FILES NEEDED SEPARATELY** (see below)
 
 ---
 
@@ -28,49 +27,38 @@ cd CodePilot-v1.0
 
 ### Step 2: Get Prompt Files
 
-**The complete prompt files are too large to include in a single package.**
-
-You need to obtain the following files and place them in `docs/prompts/`:
-
 #### Required Prompt Files:
-1. `00-core.md` - Core system configuration (roles, thresholds, constraints)
-2. `01-requirement.md` - Phase 1 workflow
-3. `01-requirement-templates.md` - Phase 1 templates
-4. `02-planning.md` - Phase 2 workflow
-5. `02-planning-templates.md` - Phase 2 templates
-6. `03-implementation.md` - Phase 3 workflow
-7. `03-implementation-templates.md` - Phase 3 templates
-8. `04-verification.md` - Phase 4 workflow
-9. `04-verification-templates.md` - Phase 4 templates
-10. `05-master-control.md` - Phase 5 workflow
-11. `05-master-control-templates.md` - Phase 5 templates
+1. `docs/prompts/00-core.md` - Core system configuration (roles, thresholds, constraints)
+2. `docs/prompts/01-requirement.md` - Phase 1 workflow
+3. `docs/prompts/01-requirement-templates.md` - Phase 1 templates
+4. `docs/prompts/02-planning.md` - Phase 2 workflow
+5. `docs/prompts/02-planning-templates.md` - Phase 2 templates
+6. `docs/prompts/03-implementation.md` - Phase 3 workflow
+7. `docs/prompts/03-implementation-templates.md` - Phase 3 templates
+8. `docs/prompts/04-verification.md` - Phase 4 workflow
+9. `docs/prompts/04-verification-templates.md` - Phase 4 templates
+10. `docs/prompts/05-master-control.md` - Phase 5 workflow
+11. `docs/prompts/05-master-control-templates.md` - Phase 5 templates
 
 #### Required Configuration Files:
-Place in `docs/config/`:
-- `git-commands.md` - Git command templates
-- `constraints-reference.md` - Full constraint list
+- `docs/config/git-commands.md` - Git command templates
+- `docs/config/constraints-reference.md` - Full constraint list
 
 #### Required Role Files:
-Place in `docs/config/roles/`:
-- `product-manager.md` - Full Product Manager role definition
-- `software-architect.md` - Full Software Architect role definition
-- `senior-developer.md` - Full Senior Developer role definition
-- `qa-lead.md` - Full QA Lead role definition
-- `release-manager.md` - Full Release Manager role definition
-- `data-interpreter.md` - Data Interpreter role (NEW in v1.0)
-- `ethics-security-engineer.md` - Ethics & Security Engineer role (ENHANCED in v1.0)
+- `docs/config/roles/product-manager.md` - Full Product Manager role definition
+- `docs/config/roles/software-architect.md` - Full Software Architect role definition
+- `docs/config/roles/senior-developer.md` - Full Senior Developer role definition
+- `docs/config/roles/qa-lead.md` - Full QA Lead role definition
+- `docs/config/roles/release-manager.md` - Full Release Manager role definition
+- `docs/config/roles/data-interpreter.md` - Data Interpreter role (NEW in v1.0)
+- `docs/config/roles/ethics-security-engineer.md` - Ethics & Security Engineer role (ENHANCED in v1.0)
 
-#### Standalone Prompts (Optional):
-Place in `docs/standalone-prompts/` (for Claude Desktop/claude.ai users):
-- `phase1-standalone-prompt.md`
-- `phase2-standalone-prompt.md`
-- `phase3-standalone-prompt.md`
-- `phase4-standalone-prompt.md`
-- `phase5-standalone-prompt.md`
-
-**Where to Get These Files:**
-- If you received these separately, copy them to the appropriate directories
-- If not, request the complete prompt package from the source
+#### Standalone Prompts (Optional, for Claude Desktop/claude.ai users):
+- `docs/standalone-prompts/phase1-standalone-prompt.md`
+- `docs/standalone-prompts/phase2-standalone-prompt.md`
+- `docs/standalone-prompts/phase3-standalone-prompt.md`
+- `docs/standalone-prompts/phase4-standalone-prompt.md`
+- `docs/standalone-prompts/phase5-standalone-prompt.md`
 
 ### Step 3: Initialize Project
 
@@ -114,7 +102,7 @@ Check that you have:
 my-project/
 ├── CLAUDE.md                    ✅ Main config
 ├── docs/
-│   ├── prompts/                 ⚠️ Need to add prompt files here
+│   ├── prompts/
 │   │   ├── 00-core.md
 │   │   ├── 01-requirement.md
 │   │   ├── 01-requirement-templates.md
@@ -127,9 +115,9 @@ my-project/
 │   │   ├── 05-master-control.md
 │   │   └── 05-master-control-templates.md
 │   ├── config/
-│   │   ├── git-commands.md      ⚠️ Need to add
-│   │   ├── constraints-reference.md  ⚠️ Need to add
-│   │   └── roles/               ⚠️ Need to add role files
+│   │   ├── git-commands.md
+│   │   ├── constraints-reference.md
+│   │   └── roles/
 │   ├── knowledge-base/          ✅ Created by init-docs.sh
 │   ├── portfolio/               ✅ Created by init-docs.sh
 │   └── [other directories]      ✅ Created by init-docs.sh
@@ -336,9 +324,6 @@ All rights reserved.
 ---
 
 ## ✨ Getting Help
-
-**Need the complete prompt files?**
-Contact the source you received this package from to obtain the full prompt file set.
 
 **Want to customize?**
 All templates in `docs/` directories can be customized for your workflow.

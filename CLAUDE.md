@@ -214,7 +214,7 @@ Set once in Phase 1, applies throughout:
 ## Version
 
 **CodePilot:** 1.0.0  
-**Release:** 2025-01-01  
+**Release:** 2026-01-01  
 **Codename:** Phoenix
 
 ---
