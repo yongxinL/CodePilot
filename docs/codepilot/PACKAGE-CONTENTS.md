@@ -1,4 +1,4 @@
-# CodePilot-OpenCode Complete Package Contents
+# CodePilot Complete Package Contents
 
 ## Package Overview
 

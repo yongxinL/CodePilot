@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# CodePilot-OpenCode Complete v1.0
+# CodePilot Complete v1.0
 # Ready-to-use automated development system for OpenCode
 
 set -e
 
-echo "🚀 Initializing CodePilot-OpenCode..."
+echo "🚀 Initializing CodePilot..."
 echo ""
 
 # Create directory structure
@@ -44,7 +44,7 @@ EOF
 echo "✅ Created .gitignore"
 echo ""
 
-echo "✨ CodePilot-OpenCode initialization complete!"
+echo "✨ CodePilot initialization complete!"
 echo ""
 echo "📋 Next Steps:"
 echo "1. Authenticate: opencode auth login"

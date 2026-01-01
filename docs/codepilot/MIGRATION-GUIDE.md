@@ -89,8 +89,8 @@ brew install opencode
 mkdir my-project-opencode
 cd my-project-opencode
 
-# Copy your CodePilot-OpenCode package
-cp -r /path/to/CodePilot-OpenCode-v1.0/* .
+# Copy your CodePilot package
+cp -r /path/to/CodePilot-v1.0/* .
 
 # Initialize
 ./init-docs.sh
@@ -506,7 +506,7 @@ After migration, you'll gain:
 2. **Test end-to-end** - Run simple project through all phases
 3. **Customize** - Adjust agent configs based on your needs
 4. **Document learnings** - Add to knowledge base
-5. **Share feedback** - Help improve CodePilot-OpenCode
+5. **Share feedback** - Help improve CodePilot
 
 ## Support
 
@@ -529,4 +529,4 @@ After migration, you'll gain:
 - [ ] Team trained on new workflow
 - [ ] Documentation updated
 
-**Ready to build with CodePilot-OpenCode!** 🚀
+**Ready to build with CodePilot!** 🚀

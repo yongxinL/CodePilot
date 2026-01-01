@@ -1,8 +1,8 @@
-# CodePilot-OpenCode
+# CodePilot
 
 **A complete, ready-to-use automated development system for OpenCode**
 
-CodePilot-OpenCode is a multi-agent development workflow that orchestrates software development through 5 specialized phases with 7 expert consultants.
+CodePilot is a multi-agent development workflow that orchestrates software development through 5 specialized phases with 7 expert consultants.
 
 ## Features
 
@@ -263,10 +263,6 @@ Edit prompts in `docs/prompts/` and `docs/subagents/`
 - ✅ Progressive disclosure (vs overwhelming)
 - ✅ Knowledge capture (vs starting fresh)
 - ✅ Production-ready (vs experimental)
-
-## License
-
-[Your license]
 
 ## Contributing
 

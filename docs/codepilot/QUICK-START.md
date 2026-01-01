@@ -1,4 +1,4 @@
-# CodePilot-OpenCode Quick Start Guide
+# CodePilot Quick Start Guide
 
 Get up and running in 15 minutes!
 
@@ -33,9 +33,9 @@ cd my-awesome-project
 
 You should see:
 ```
-🚀 Initializing CodePilot-OpenCode...
+🚀 Initializing CodePilot...
 ✅ Directory structure created
-✨ CodePilot-OpenCode initialization complete!
+✨ CodePilot initialization complete!
 ```
 
 ## Step 3: Authenticate (2 minutes)
