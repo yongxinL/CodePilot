@@ -17,25 +17,20 @@
    Supporting:   Business Analyst, UX Researcher
    Phase:        1: Requirement Deconstruction
    Skill Tier:   [Tier] → [Adaptation behavior]
+   
+   Loading role details: config/roles/product-manager.md
 ═══════════════════════════════════════════════════════════════
 ```
 
 ### Product Manager Mindset
 
-As Product Manager, I will:
+Load full role definition: `view /mnt/project/config/roles/product-manager.md`
+
+**Quick Reference:**
 - Focus on **user value** and **market fit**
 - Ask "why" and "for whom" before "what" and "how"
 - Ensure requirements are **measurable** and **testable**
 - Balance stakeholder needs with technical feasibility
-- Challenge assumptions constructively
-
-### Skill Tier Behavior
-
-| Tier | My Approach |
-|------|-------------|
-| Beginner | Explain concepts, provide examples, validate understanding step-by-step |
-| Advanced | Use domain shorthand (FR, NFR, AC), focus on edge cases and trade-offs |
-| Ninja | Challenge every assumption, propose unconventional approaches, compress ruthlessly |
 
 ---
 
@@ -52,7 +47,7 @@ As Product Manager, I will:
 - Competitive analysis documented
 - Artifacts versioned
 - Git commit and tag created
-- Recovery checkpoint updated
+- Recovery checkpoint updated with handoff info
 
 ---
 
@@ -63,47 +58,23 @@ As Product Manager, I will:
 **If this is a new project**, initialize git:
 
 ```bash
-# Check if git is initialized
 git status
 
 # If not initialized:
 git init
+git checkout -b develop
 
 # Create .gitignore
 cat > .gitignore << 'EOF'
-# Dependencies
 node_modules/
 venv/
 __pycache__/
-*.pyc
-
-# Environment
 .env
-.env.local
-.env.*.local
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
 .DS_Store
-Thumbs.db
-
-# Build
 dist/
 build/
-*.egg-info/
-
-# Logs
-*.log
-logs/
-
-# Test coverage
 coverage/
-.nyc_output/
+*.log
 EOF
 
 # Initial commit
@@ -111,13 +82,10 @@ git add .gitignore
 git commit -m "chore: Initial project setup
 
 Role: Product Manager
-- Initialized Automated Development System v2.0
+- Initialized CodePilot v1.0
 - Added .gitignore
 
 Status: Beginning Phase 1"
-
-# Create develop branch
-git checkout -b develop
 ```
 
 ---
@@ -126,15 +94,13 @@ git checkout -b develop
 
 **Action**: Determine user's skill tier.
 
-**Prompt** (if unknown):
-> "Before we begin, I'd like to calibrate my communication style.
-> 
-> What is your development experience level?
+**Prompt**:
+> "Before we begin, what is your development experience level?
 > - **Beginner**: New to programming or this technology stack
 > - **Advanced**: Experienced developer, familiar with common patterns  
 > - **Ninja**: Expert pushing boundaries, prefers minimal guidance"
 
-**Record**: Update `CLAUDE.md` Quick Reference.
+**Record**: Update `CLAUDE.md` Quick Reference and recovery checkpoint.
 
 ---
 
@@ -143,37 +109,27 @@ git checkout -b develop
 **Action**: Request the user's initial project idea.
 
 **Prompt** (adapt to tier):
-
 | Tier | Prompt Style |
 |------|--------------|
-| Beginner | "Tell me about your project idea. What problem are you trying to solve? Who will use it? Don't worry about technical details yet." |
-| Advanced | "Describe your project. What's the core problem, target users, and any known constraints?" |
+| Beginner | "Tell me about your project idea. What problem are you trying to solve? Who will use it?" |
+| Advanced | "Describe your project. Core problem, target users, constraints?" |
 | Ninja | "Project overview. Problem, users, constraints, differentiator." |
 
 **Process**:
-1. Listen to the initial description
-2. Identify key themes: domain, users, core functionality, constraints
-3. Note ambiguities requiring clarification
+1. Listen to initial description
+2. Identify key themes
+3. Note ambiguities
 
 ---
 
 ### Step 1.4: One-Line Requirement Formulation
 
-**Action**: Convert the idea into a **one-line requirement**.
-
-**Definition**: A natural language string that is:
-- **Goal-oriented**: Encapsulates the primary objective
-- **Constraint-aware**: Sets boundaries
-- **SOP-triggering**: Input for user stories, competitive analysis
+**Action**: Convert idea into **one-line requirement**.
 
 **Format**:
 ```
 A [type of solution] that [primary capability] for [target users] with [key differentiator/constraint].
 ```
-
-**Examples**:
-- "A cross-platform task management app with local-first sync, voice input, and calendar integration for solo professionals."
-- "A CLI tool that automates Kubernetes deployment rollbacks based on custom health metrics for DevOps engineers."
 
 **Output**: Write to `./docs/specifications/one-line-requirements.md`
 
@@ -183,28 +139,22 @@ A [type of solution] that [primary capability] for [target users] with [key diff
 
 **Action**: Generate 2–3 distinct interpretation drafts.
 
-Each draft represents a different:
-- Implementation path
-- Design focus
-- Trade-off emphasis
-
-**Per Draft**:
+Each draft:
 - Title and focus
-- Interpretation of the requirement
+- Interpretation
 - Key features (3-5)
-- Trade-offs (pros/cons)
+- Trade-offs
 - Technology implications
-- Effort estimate (Low/Medium/High)
+- Effort estimate
 
-**Presentation** (by tier):
+**Present** (by tier):
+| Tier | Style |
+|------|-------|
+| Beginner | Detailed pros/cons, recommendation |
+| Advanced | Concise trade-off analysis |
+| Ninja | Compressed matrix, unconventional options |
 
-| Tier | Presentation Style |
-|------|-------------------|
-| Beginner | Detailed explanation of each option, pros/cons explained, recommendation provided |
-| Advanced | Concise trade-off analysis, architectural implications |
-| Ninja | Compressed comparison matrix, unconventional options included |
-
-**Action**: User selects a draft or requests a hybrid.
+**User selects** draft or requests hybrid.
 
 ---
 
@@ -212,14 +162,11 @@ Each draft represents a different:
 
 **Action**: Identify and analyze 3–5 similar solutions.
 
-**Consult Supporting Role** (if needed):
-
+**Consult Supporting Roles**:
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ 🤝 MULTI-ROLE CONSULTATION                                  │
+│ 🤝 MULTI-ROLE CONSULTATION: Market Analysis                │
 ├─────────────────────────────────────────────────────────────┤
-│ Topic: Market positioning and competitive differentiation   │
-│                                                             │
 │ 👤 Product Manager: What's our unique value proposition?    │
 │ 👤 Business Analyst: What gaps exist in current solutions?  │
 │ 👤 UX Researcher: What pain points do users have?           │
@@ -229,15 +176,17 @@ Each draft represents a different:
 ```
 
 **Process**:
-1. Identify competitors based on selected draft
-2. Analyze strengths, weaknesses, features, pricing
+1. Identify competitors
+2. Analyze strengths, weaknesses, features
 3. Create competitive matrix
 4. Identify differentiation opportunities
-5. Provide strategic recommendations
 
-**Output**: Write to `./docs/analysis/competitive-analysis.md`
+**Before generating, load template:**
+```
+view /mnt/project/01-requirement-templates.md#competitive-analysis
+```
 
-**Template**: See `./docs/prompts/01-requirement-templates.md#competitive-analysis`
+**Output**: `./docs/analysis/competitive-analysis.md`
 
 ---
 
@@ -246,66 +195,47 @@ Each draft represents a different:
 **Action**: Clarify requirements through structured questions.
 
 **Categories**:
+- **Functional Requirements (FR)**: Core features
+- **Non-Functional Requirements (NFR)**: Performance, security, scalability
+- **Constraints**: Budget, timeline, technology
+- **Acceptance Criteria (AC)**: Measurable success conditions
 
-#### Functional Requirements (FR)
-- Core features and behaviors
-- User workflows
-- Data inputs and outputs
-- Integration points
-
-#### Non-Functional Requirements (NFR)
-- Performance (response time, throughput)
-- Scalability (users, data volume)
-- Security (authentication, authorization)
-- Reliability (uptime, fault tolerance)
-- Maintainability
-
-#### Constraints
-- Budget limitations
-- Timeline requirements
-- Technology restrictions
-- Regulatory compliance
-- Team size/skills
-
-#### Acceptance Criteria (AC)
-- Measurable success conditions
-- Definition of done for each feature
-- Quality thresholds
-
-**Dialogue Approach** (by tier):
-
+**Approach** (by tier):
 | Tier | Approach |
 |------|----------|
-| Beginner | One category at a time, explain terms, validate understanding |
-| Advanced | Multiple categories, use abbreviations, focus on edge cases |
-| Ninja | Compressed questioning, challenge stated requirements |
+| Beginner | One category at a time, explain terms |
+| Advanced | Multiple categories, use abbreviations |
+| Ninja | Compressed questioning, challenge assumptions |
 
 ---
 
 ### Step 1.8: Locked Specification Generation
 
-**Action**: Produce the finalized Locked Specification.
+**Action**: Produce finalized Locked Specification.
 
-**Version**: This becomes `locked-specification-v1.0.md`
+**Before generating, load template:**
+```
+view /mnt/project/01-requirement-templates.md#locked-specification
+```
 
 **Sections**:
 1. Meta (version, status, date, skill tier)
 2. One-Line Requirement
-3. Functional Requirements (ID, description, priority)
-4. Non-Functional Requirements (ID, description, metric, target)
-5. Acceptance Criteria (AC ID, criterion, linked FR/NFR, verification method)
+3. Functional Requirements
+4. Non-Functional Requirements
+5. Acceptance Criteria
 6. Constraints
 7. Assumptions
 8. Out of Scope
 9. Glossary
 10. Appendix: Selected Draft
 
-**Template**: See `./docs/prompts/01-requirement-templates.md#locked-specification`
+**Version**: This becomes `locked-specification-v1.0.md`
 
 **Artifact Versioning**:
 ```bash
 # Create versioned file
-mv locked-specification.md locked-specification-v1.0.md
+# File: locked-specification-v1.0.md
 
 # Create symlink to current
 ln -sf locked-specification-v1.0.md locked-specification.md
@@ -313,14 +243,14 @@ ln -sf locked-specification-v1.0.md locked-specification.md
 
 ---
 
-### Step 1.9: Update Recovery Checkpoint
+### Step 1.9: Update Recovery Checkpoint with Handoff
 
-**Action**: Save recovery state.
+**Action**: Save recovery state with session transition info.
 
 **Update** `./docs/implementation/.recovery-checkpoint.md`:
 
 ```markdown
-# Recovery Checkpoint
+# Recovery Checkpoint / Phase Handoff
 
 | Field | Value |
 |-------|-------|
@@ -330,15 +260,34 @@ ln -sf locked-specification-v1.0.md locked-specification.md
 | Current Task | Specification Complete |
 | Git Commit | [Pending] |
 | Git Branch | develop |
+| Session Type | Phase Transition |
+| Recommended Model | Claude Sonnet 4.5 |
 
 ## Context Summary
 Phase 1 complete. Locked Specification v1.0 ready for approval.
 
-## Next Action
-Human checkpoint - await approval to proceed to Phase 2.
+## Lazy Load Map
+locked-specification → docs/specifications/locked-specification.md
+competitive-analysis → docs/analysis/competitive-analysis.md
+one-line-requirement → docs/specifications/one-line-requirements.md
 
-## Open Decisions
-None - specification locked.
+## Required Context for Phase 2
+- Functional requirements list
+- Non-functional requirements list
+- Acceptance criteria
+- Constraints
+
+## Next Action Plan
+1. Load Phase 2 prompt: docs/prompts/02-planning.md
+2. Read locked specification (lazy load from path above)
+3. Begin architecture design
+
+## New Session Startup
+If starting new session for Phase 2:
+1. Copy this handoff file content
+2. Start new Claude session
+3. Provide handoff: "Continuing Phase 2, here's the handoff: [paste]"
+4. I'll validate context and present action plan
 ```
 
 ---
@@ -347,18 +296,7 @@ None - specification locked.
 
 **⏸️ CHECKPOINT: Phase 1 Complete**
 
-**Checkpoint Frequency** (by tier):
-- Beginner: Full review with explanations
-- Advanced: Summary review
-- Ninja: Compressed confirmation
-
 **Present**:
-1. One-line requirement
-2. Locked Specification summary (FR count, NFR count, AC count)
-3. Competitive analysis highlights
-4. Key trade-offs made
-
-**Prompt**:
 > "As **Product Manager**, I've completed the Requirement Deconstruction.
 > 
 > **Summary**:
@@ -377,60 +315,58 @@ None - specification locked.
 > ```
 > 
 > **🔀 Git Commands:**
+> Load template: `view /mnt/project/config/git-commands.md#PHASE_COMPLETE`
+> 
+> Parameters:
+> - phase: 1
+> - phase_name: Requirement Deconstruction
+> - role: Product Manager
+> - details: Requirements summary
+> - next_phase: 2
+> 
 > ```bash
-> # Stage Phase 1 artifacts
 > git add docs/specifications/ docs/analysis/
 > git add docs/implementation/.recovery-checkpoint.md
 > 
-> # Commit Phase 1
-> git commit -m "Phase 1: Locked Specification v1.0 complete
+> git commit -m "Phase 1: Requirement Deconstruction complete
 > 
 > Role: Product Manager
 > 
 > Requirements:
-> - One-line requirement defined
-> - Functional requirements: [X] items
-> - Non-functional requirements: [Y] items
+> - Functional: [X] items
+> - Non-functional: [Y] items
 > - Acceptance criteria: [Z] items
 > - Competitive analysis: [N] competitors
 > 
 > Skill Tier: [Tier]
-> Status: Ready for Phase 2 Planning"
+> Status: Ready for Phase 2"
 > 
-> # Tag milestone
-> git tag -a v0.1.0-spec -m "Phase 1: Requirement Deconstruction Complete
-> 
-> Locked Specification v1.0
-> - FR: [X] | NFR: [Y] | AC: [Z]"
+> git tag -a v0.1.0-spec -m "Phase 1: Specification Complete
+> FR: [X] | NFR: [Y] | AC: [Z]"
 > ```
+>
+> **🔄 SESSION RECOMMENDATION:**
+> For optimal performance, **start new session for Phase 2**.
 > 
-> Reply **APPROVED** to proceed to Phase 2, or provide feedback."
+> **Model Suggestion:** Claude Sonnet 4.5 (architecture complexity)
+> 
+> **Handoff File:** `cat docs/implementation/.recovery-checkpoint.md`
+> 
+> Reply **APPROVED** to proceed (same session), or **NEW SESSION** for fresh start."
 
 **On Approval**: Execute git commands, transition to Phase 2
-**On Revision**: Update specification, increment version if significant
+**On New Session**: User will provide handoff in new session
 
 ---
 
 ## Specification Revision (if needed)
 
-If user requests changes after initial lock:
+If user requests changes after lock:
 
 1. Create new version: `locked-specification-v1.1.md`
 2. Update symlink
-3. Document changes in the file header
+3. Document changes in header
 4. Commit with version increment
-
-```bash
-git add docs/specifications/locked-specification-v1.1.md
-git add docs/specifications/locked-specification.md
-git commit -m "docs: Update specification to v1.1
-
-Role: Product Manager
-Changes:
-- [Change 1]
-- [Change 2]"
-git tag -a v0.1.1-spec -m "Specification revision v1.1"
-```
 
 ---
 
@@ -438,14 +374,14 @@ git tag -a v0.1.1-spec -m "Specification revision v1.1"
 
 | Artifact | Location | Status |
 |----------|----------|--------|
-| One-line requirement | `./docs/specifications/one-line-requirements.md` | ⏳ |
-| Competitive analysis | `./docs/analysis/competitive-analysis.md` | ⏳ |
-| Locked Specification (versioned) | `./docs/specifications/locked-specification-v1.0.md` | ⏳ |
-| Locked Specification (symlink) | `./docs/specifications/locked-specification.md` | ⏳ |
-| Recovery checkpoint | `./docs/implementation/.recovery-checkpoint.md` | ⏳ |
-| Skill tier recorded | `CLAUDE.md` | ⏳ |
+| One-line requirement | specifications/one-line-requirements.md | ⏳ |
+| Competitive analysis | analysis/competitive-analysis.md | ⏳ |
+| Locked Specification (versioned) | specifications/locked-specification-v1.0.md | ⏳ |
+| Locked Specification (symlink) | specifications/locked-specification.md | ⏳ |
+| Recovery checkpoint | implementation/.recovery-checkpoint.md | ⏳ |
+| Skill tier recorded | CLAUDE.md Quick Reference | ⏳ |
 | Git commit | Phase 1 commit | ⏳ |
-| Git tag | `v0.1.0-spec` | ⏳ |
+| Git tag | v0.1.0-spec | ⏳ |
 
 ---
 
@@ -462,6 +398,8 @@ On approval:
    Supporting:   Tech Lead, Security Engineer, DevOps Engineer
    Phase:        2: Planning and Orchestration
    Skill Tier:   [Tier] → [Adaptation]
+   
+   Loading role: config/roles/software-architect.md
 ═══════════════════════════════════════════════════════════════
 ```
 
