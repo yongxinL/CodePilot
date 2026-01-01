@@ -1,0 +1,221 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  
+  "default_agent": "requirements",
+  
+  "tools": {
+    "write": true,
+    "edit": true,
+    "bash": true,
+    "read": true,
+    "grep": true,
+    "glob": true,
+    "list": true,
+    "webfetch": false
+  },
+  
+  "instructions": [
+    "docs/AGENTS.md",
+    "docs/core/00-core.md"
+  ],
+  
+  "agent": {
+    "requirements": {
+      "description": "Phase 1: Requirements Analysis - Deconstruct requirements and create specifications",
+      "mode": "primary",
+      "temperature": 0.3,
+      "prompt": "{file:./docs/prompts/01-requirement.md}",
+      "max_iterations": 50,
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "read": true
+      }
+    },
+    
+    "architect": {
+      "description": "Phase 2: Planning & Architecture - Create technical designs and project plans",
+      "mode": "primary",
+      "temperature": 0.3,
+      "prompt": "{file:./docs/prompts/02-planning.md}",
+      "max_iterations": 50,
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "read": true
+      }
+    },
+    
+    "engineer": {
+      "description": "Phase 3: Implementation - Execute development with best practices",
+      "mode": "primary",
+      "temperature": 0.2,
+      "prompt": "{file:./docs/prompts/03-implementation.md}",
+      "max_iterations": 100,
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "read": true
+      }
+    },
+    
+    "verifier": {
+      "description": "Phase 4: Verification & Release - Test, validate, and prepare deployment",
+      "mode": "primary",
+      "temperature": 0.2,
+      "prompt": "{file:./docs/prompts/04-verification.md}",
+      "max_iterations": 50,
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "read": true
+      }
+    },
+    
+    "master": {
+      "description": "Phase 5: Master Control - Orchestrate multi-phase projects",
+      "mode": "primary",
+      "temperature": 0.4,
+      "prompt": "{file:./docs/prompts/05-master-control.md}",
+      "max_iterations": 30,
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "read": true
+      }
+    },
+    
+    "security": {
+      "description": "Security Engineer - Security assessment and recommendations",
+      "mode": "subagent",
+      "temperature": 0.2,
+      "prompt": "{file:./docs/subagents/security.md}",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "read": true
+      }
+    },
+    
+    "ux": {
+      "description": "UX Researcher - User experience and accessibility analysis",
+      "mode": "subagent",
+      "temperature": 0.4,
+      "prompt": "{file:./docs/subagents/ux.md}",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "read": true
+      }
+    },
+    
+    "performance": {
+      "description": "Performance Specialist - Optimization and efficiency",
+      "mode": "subagent",
+      "temperature": 0.2,
+      "prompt": "{file:./docs/subagents/performance.md}",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "read": true
+      }
+    },
+    
+    "devops": {
+      "description": "DevOps Engineer - Deployment and infrastructure guidance",
+      "mode": "subagent",
+      "temperature": 0.3,
+      "prompt": "{file:./docs/subagents/devops.md}",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": true,
+        "read": true
+      }
+    },
+    
+    "qa": {
+      "description": "QA Engineer - Testing strategy and quality assurance",
+      "mode": "subagent",
+      "temperature": 0.3,
+      "prompt": "{file:./docs/subagents/qa.md}",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": true,
+        "read": true
+      }
+    },
+    
+    "docs": {
+      "description": "Technical Writer - Documentation creation and review",
+      "mode": "subagent",
+      "temperature": 0.4,
+      "prompt": "{file:./docs/subagents/docs.md}",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "read": true
+      }
+    },
+    
+    "ethics": {
+      "description": "Ethics Advisor - Ethical implications and accessibility",
+      "mode": "subagent",
+      "temperature": 0.4,
+      "prompt": "{file:./docs/subagents/ethics.md}",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "read": true
+      }
+    }
+  },
+  
+  "command": {
+    "phase1": {
+      "description": "Start Phase 1: Requirements Analysis",
+      "template": "Begin requirements analysis for: $REQUIREMENT",
+      "agent": "requirements"
+    },
+    
+    "phase2": {
+      "description": "Start Phase 2: Planning & Architecture",
+      "template": "Begin planning and architecture design",
+      "agent": "architect"
+    },
+    
+    "phase3": {
+      "description": "Start Phase 3: Implementation",
+      "template": "Begin implementation",
+      "agent": "engineer"
+    },
+    
+    "phase4": {
+      "description": "Start Phase 4: Verification & Release",
+      "template": "Begin verification and release preparation",
+      "agent": "verifier"
+    },
+    
+    "phase5": {
+      "description": "Start Phase 5: Master Control",
+      "template": "Begin multi-phase orchestration",
+      "agent": "master"
+    },
+    
+    "status": {
+      "description": "Show project status",
+      "template": "Provide comprehensive status report on current progress, artifacts, and next steps"
+    }
+  }
+}
