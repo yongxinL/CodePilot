@@ -37,4 +37,4 @@
 2. **[High]** [Action]: Fix before release
 
 ---
-See ENHANCED-PROMPT-SPECS.md for complete format
+See [FEATURE-SPECS-INDEX.md](../../core/feature-specs/FEATURE-SPECS-INDEX.md) for complete format

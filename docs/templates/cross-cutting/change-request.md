@@ -33,6 +33,3 @@
 **Status**: Pending | Approved | Rejected  
 **Decided By**: [Stakeholder]  
 **Date**: [YYYY-MM-DD]
-
----
-See ENHANCED-PROMPT-SPECS.md for complete change control process

@@ -3,7 +3,7 @@
 3. Make technical interpretations and decisions
 4. Document each resolution with rationale
 
-**See ENHANCED-PROMPT-SPECS.md for complete specification format and examples**
+**See**: [Specification Resolutions Feature Spec](../core/feature-specs/phase2-planning/specification-resolutions.md)
 
 ### Step 1.6: Extract Goals from One-Line Requirement (Core+ Tier)
 
@@ -13,13 +13,13 @@
 
 Create SMART goals that architecture must achieve.
 
-**See ENHANCED-PROMPT-SPECS.md for complete goal extraction process**
+**See**: [Goal Extraction Feature Spec](../core/feature-specs/phase2-planning/goal-extraction.md)
 
 ### Step 2: Design System Architecture
-Create high-level architecture (same as v1.0)
+Create high-level architecture with consideration for scalability and maintainability
 
 ### Step 3: Technology Selection
-Select appropriate technologies (same as v1.0)
+Select appropriate technologies based on requirements and team expertise
 
 ### Step 3.5: Verify Technology Versions via MCP (Core+ Tier)
 
@@ -85,12 +85,12 @@ All versions verified and documented."
 - Security advisory status (if checked)
 - Official documentation links
 
-**Complete MCP implementation details in**: `docs/core/04-mcp-integration.md`
+**Complete MCP implementation details in**: [MCP Version Checking Feature Spec](../core/feature-specs/phase2-planning/mcp-version-checking.md)
 
 **Token Cost**: First check ~750 tokens, cached thereafter (0 tokens for 1 hour)
 
 ### Step 4: Create Technical Design
-(Same as v1.0)
+Document detailed design specifications including data models, APIs, and system interactions
 
 ### Step 4.5: Create Individual Task Files (Core+ Tier)
 
@@ -126,10 +126,10 @@ docs/artifacts/phase2-planning/tasks/
 
 **Token Savings**: Load only relevant tasks in Phases 3-4 (saves ~4,000 tokens)
 
-**Complete task file format in**: `ENHANCED-PROMPT-SPECS.md` (search for "Individual Task Files")
+**Complete task file format in**: [Individual Task Files Feature Spec](../core/feature-specs/phase2-planning/individual-task-files.md)
 
 ### Step 5: Develop Implementation Plan
-(Same as v1.0, but references task files if individual_task_files enabled)
+Break design into actionable implementation tasks with clear ownership and dependencies. Use individual task files if enabled in configuration
 
 ### Step 5.5: Generate Gantt Chart (Core+ Tier)
 
@@ -144,7 +144,7 @@ docs/artifacts/phase2-planning/tasks/
 - Parallel work opportunities
 - Resource allocation
 
-**Complete Gantt chart format in**: `ENHANCED-PROMPT-SPECS.md` (search for "Gantt Chart")
+**Complete Gantt chart format in**: [Gantt Chart Feature Spec](../core/feature-specs/phase2-planning/gantt-chart.md)
 
 **Token Cost**: +500 tokens
 
@@ -157,7 +157,7 @@ docs/artifacts/phase2-planning/tasks/
 - **DRY** (Don't Repeat Yourself): No duplication?
 - **SOLID** Principles: All 5 principles followed?
 
-**Complete checklist format in**: `ENHANCED-PROMPT-SPECS.md` (search for "KISS/DRY/SOLID")
+**Complete checklist format in**: [Design Principles Checklist Feature Spec](../core/feature-specs/phase2-planning/design-principles-checklist.md)
 
 **Token Cost**: +400 tokens
 
@@ -172,7 +172,7 @@ docs/artifacts/phase2-planning/tasks/
 - Expected downtime
 - Communication plan
 
-**Complete rollback plan format in**: `ENHANCED-PROMPT-SPECS.md` (search for "Rollback Plan")
+**Complete rollback plan format in**: [Rollback Plan Feature Spec](../core/feature-specs/phase2-planning/rollback-plan.md)
 
 **Token Cost**: +500 tokens
 
@@ -189,7 +189,7 @@ docs/artifacts/phase2-planning/tasks/
 - Future considerations
 - Testing migrations
 
-**Complete evolution plan in**: `ENHANCED-PROMPT-SPECS.md` (search for "Data Model Evolution")
+**Complete evolution plan in**: [Data Model Evolution Feature Spec](../core/feature-specs/phase2-planning/data-model-evolution.md)
 
 **Token Cost**: +300 tokens
 
@@ -494,15 +494,18 @@ If Phase 2 extends long enough to reach 75% again:
 
 ## Consulting Specialists
 
-(Same as v1.0 - unchanged)
-
-**Available**:
+Consult specialized agents as needed:
 - @security, @ux, @performance, @devops, @qa, @docs, @ethics
 - **NEW (Advanced+)**: @version-checker
 
 ## Quality Standards
 
-(Same as v1.0, plus):
+Your design must be:
+- ✅ **Clear**: Architecture diagrams, clear rationale
+- ✅ **Complete**: All components documented, integration points defined
+- ✅ **Consistent**: Following team standards and patterns
+- ✅ **Feasible**: Achievable within timeline and resource constraints
+- ✅ **Scalable**: Designed for growth and load
 - ✅ **Version Verified** (Core+ with MCP): All technologies at latest stable
 - ✅ **Design Validated** (Core+): KISS/DRY/SOLID principles checked
 - ✅ **Rollback Planned** (Core+): Recovery strategy documented
@@ -525,7 +528,7 @@ If Phase 2 extends long enough to reach 75% again:
 ### Advanced+ Tier:
 - Data model evolution plan (in data-models.md)
 
-**Complete format examples in**: Original v1.0 prompt + ENHANCED-PROMPT-SPECS.md
+**Complete format examples in**: [FEATURE-SPECS-INDEX.md](../../core/feature-specs/FEATURE-SPECS-INDEX.md)
 
 ## Phase Completion
 
@@ -624,11 +627,21 @@ If Phase 2 extends long enough to reach 75% again:
 
 ## Tips for Effective Architecture
 
-(Same as v1.0 - see original prompt)
+- **Start with requirements**: Architecture follows requirements, not the reverse
+- **Choose simplicity**: Premature optimization creates complexity. Start simple, optimize later
+- **Document assumptions**: Record why each architectural decision was made
+- **Plan for growth**: Design should accommodate 10x scale without redesign
+- **Test architecture assumptions**: Spike/POC for critical decisions before final design
+- **Get feedback early**: Review architecture with team before detailed planning
 
 ## Common Pitfalls to Avoid
 
-(Same as v1.0 - see original prompt)
+- ❌ Over-engineering: Too many abstractions, layers, patterns for simple needs
+- ❌ Ignoring operations**: Infrastructure, monitoring, deployment not considered
+- ❌ Single point of failure**: No redundancy for critical components
+- ❌ Underestimating complexity**: Real-time, scale, or security needs underestimated
+- ❌ Technology obsession**: Choosing tools before understanding problems
+- ❌ No migration path**: Can't evolve from Phase 1 architecture to Phase 2
 
 ## Session Management
 
@@ -657,4 +670,4 @@ If Phase 2 extends long enough to reach 75% again:
 - Core system: `docs/core/00-core.md`
 - MCP integration: `docs/core/04-mcp-integration.md`
 - Git integration: `docs/core/01-git-integration.md`
-- Feature specifications: `ENHANCED-PROMPT-SPECS.md`
+- Feature specifications: [FEATURE-SPECS-INDEX.md](../../core/feature-specs/FEATURE-SPECS-INDEX.md)

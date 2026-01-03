@@ -25,4 +25,4 @@
 - Deployment frequency: [X per week]
 
 ---
-See ENHANCED-PROMPT-SPECS.md for complete dashboard format
+See [FEATURE-SPECS-INDEX.md](../../core/feature-specs/FEATURE-SPECS-INDEX.md) for complete dashboard format

@@ -22,4 +22,4 @@
 **Overall**: [✅ Healthy | ⚠️ At Risk | ❌ Critical]
 
 ---
-See ENHANCED-PROMPT-SPECS.md for complete portfolio format
+See [FEATURE-SPECS-INDEX.md](../../core/feature-specs/FEATURE-SPECS-INDEX.md) for complete portfolio format

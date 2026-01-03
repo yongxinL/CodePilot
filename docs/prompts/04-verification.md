@@ -40,7 +40,7 @@ Read `.codepilot.config.json`:
 ## Workflow Process
 
 ### Steps 1-3: Review, Setup, Execute Tests
-(Same as v1.0)
+Review test plans, configure test environment, execute all test suites
 
 ### Step 3.5: Create Test Coverage Matrix (Core+ Tier)
 
@@ -52,12 +52,12 @@ Read `.codepilot.config.json`:
 
 **Format**: Grid with Features × Test Types showing percentages
 
-**Complete specification in**: `ENHANCED-PROMPT-SPECS.md` (search for "Test Coverage Matrix")
+**Complete specification in**: [Test Coverage Matrix Feature Spec](../core/feature-specs/phase4-verification/test-coverage-matrix.md)
 
 **Token Cost**: +500 tokens
 
 ### Step 4: Issue Identification
-(Same as v1.0)
+Analyze test results, categorize failures and issues by type and severity
 
 ### Step 5: Quality Gates Review
 
@@ -87,7 +87,7 @@ Check quality thresholds from configuration:
 - ⚠️ CONDITIONAL GO: Minor items pending
 - ❌ NO-GO: Critical blockers
 
-**Complete checklist format in**: `ENHANCED-PROMPT-SPECS.md` (search for "Release Readiness")
+**Complete specification in**: [Release Readiness Checklist Feature Spec](../core/feature-specs/phase4-verification/release-readiness-checklist.md)
 
 **Token Cost**: +400 tokens
 
@@ -102,7 +102,7 @@ Check quality thresholds from configuration:
 - Resource utilization (CPU, memory, network)
 - Comparison to requirements
 
-**Complete benchmark format in**: `ENHANCED-PROMPT-SPECS.md` (search for "Performance Benchmark")
+**Complete specification in**: [Performance Benchmarks Feature Spec](../core/feature-specs/phase4-verification/performance-benchmarks.md)
 
 **Token Cost**: +600 tokens
 
@@ -117,12 +117,12 @@ Check quality thresholds from configuration:
 - Input validation testing
 - Findings by severity (Critical/High/Medium/Low)
 
-**Complete scan format in**: `ENHANCED-PROMPT-SPECS.md` (search for "Security Scan")
+**Complete specification in**: [Security Scan Report Feature Spec](../core/feature-specs/phase4-verification/security-scan-report.md)
 
 **Token Cost**: +500 tokens
 
 ### Step 8: Create Release Package
-(Same as v1.0)
+Package verified code and documentation for release or handoff
 
 ## Phase Completion
 
@@ -140,7 +140,7 @@ Check quality thresholds from configuration:
    - Documentation complete
 
 2. **Final Quality Check**
-   Same as v1.0
+   Verify all quality gates passed, no blockers remain
 
 3. **Save Artifacts**
    All documents in `docs/artifacts/phase4-verification/`
@@ -157,7 +157,7 @@ Check quality thresholds from configuration:
    git add docs/artifacts/phase4-verification/
    git commit -m 'Phase 4 complete: Verification passed, release ready'
    git tag phase4-complete
-   git tag v1.0.0-rc1  # Release candidate
+   git tag v2.0.0-rc1  # Release candidate
    ```
    ```
    
@@ -166,7 +166,7 @@ Check quality thresholds from configuration:
    Committing verification...
    ✅ Commit: jkl012m
    ✅ Tag: phase4-complete
-   ✅ Tag: v1.0.0-rc1
+   ✅ Tag: v2.0.0-rc1
    ```
 
 5. **Generate Handoff or Completion**
@@ -514,11 +514,16 @@ opencode --restore-phase 3
 
 ## Consulting Specialists
 
-(Same as v1.0)
+Consult specialized agents as needed for expert verification:
+- @security, @performance, @ux, @devops, @qa, @docs
 
 ## Quality Standards
 
-(Same as v1.0, plus):
+Verification outputs must be:
+- ✅ **Comprehensive**: All features tested, all test types covered
+- ✅ **Reproducible**: Verification can be repeated by others
+- ✅ **Traceable**: Each issue links to test/requirement
+- ✅ **Actionable**: Clear impact and remediation for each issue
 - ✅ **Test Matrix Complete** (Core+): All features × test types covered
 - ✅ **Release Checklist** (Core+): All go/no-go criteria met
 - ✅ **Performance Benchmarked** (Advanced+): Meets all performance requirements
@@ -533,6 +538,8 @@ opencode --restore-phase 3
 
 ---
 
-**For v1.0 content, see original 04-verification.md**
-**For v2.0 features, see ENHANCED-PROMPT-SPECS.md**
-**For core systems, see docs/core/ directory**
+## Reference Documentation
+
+**For v2.0 features and detailed specifications**, see [FEATURE-SPECS-INDEX.md](../../core/feature-specs/FEATURE-SPECS-INDEX.md)
+
+**For core systems** (checkpoints, compression, MCP), see `docs/core/` directory

@@ -59,7 +59,7 @@ Use this agent when:
 ## Workflow Process
 
 ### Steps 1-5: Project Assessment, Planning, Orchestration, QA, Knowledge
-(Same as v1.0)
+Assess project status, coordinate phases, manage quality, and capture knowledge across the development lifecycle
 
 ### Step 5.5: Generate Metrics Dashboard (Advanced+ Tier)
 
@@ -73,7 +73,7 @@ Use this agent when:
 
 **Update frequency**: Per phase or per sprint
 
-**Complete format in**: `ENHANCED-PROMPT-SPECS.md`
+**Complete specification in**: [Metrics Dashboard Feature Spec](../core/feature-specs/phase5-master/metrics-dashboard.md)
 
 **Token Cost**: +700 tokens
 
@@ -98,17 +98,23 @@ Use this agent when:
 - Integration points
 - Blocking dependencies
 
-**Complete specification in**: `ENHANCED-PROMPT-SPECS.md` (search for "Portfolio")
+**Advanced+ Specification**: [Portfolio View Feature Spec](../core/feature-specs/phase5-master/portfolio-view.md)
+
+**Full Tier Specification**: [Resource Allocation Feature Spec](../core/feature-specs/phase5-master/resource-allocation.md)
 
 ## Output Formats
 
-(Same as v1.0, plus):
+**All Tiers**:
+- Executive summary
+- Phase status reports
+- Handoff documents
+- Decision logs
 
-**NEW (Advanced+)**:
+**Advanced+ Tier**:
 - metrics-dashboard.md
 - portfolio-view.md
 
-**NEW (Full)**:
+**Full Tier**:
 - resource-allocation.md
 
 ## Knowledge Capture
@@ -434,11 +440,15 @@ Even with compression:
 
 ## Consulting Specialists
 
-(Same as v1.0)
+Consult with all agent types as needed for multi-phase oversight:
+- Phase Agents: Requirement, Architect, Engineer, Verifier
+- Specialist Agents: Security, Performance, UX, DevOps, QA, Docs, Ethics
 
 ## Phase Orchestration Patterns
 
-(Same as v1.0)
+**Single Project Pattern**: One project flows through all phases sequentially
+**Multi-Phase Pattern**: Multiple parallel projects coordinated at master level
+**Escalation Pattern**: Issues bubble up to master for resolution across phases
 
 ## Knowledge Management
 
@@ -460,5 +470,8 @@ After project completion:
 
 ---
 
-**For v1.0 content, see original 05-master-control.md**
-**For v2.0 features, see ENHANCED-PROMPT-SPECS.md**
+## Reference Documentation
+
+**For v2.0 features and detailed specifications**, see [FEATURE-SPECS-INDEX.md](../../core/feature-specs/FEATURE-SPECS-INDEX.md)
+
+**For core systems** (knowledge capture, Git, checkpoints), see `docs/core/` directory

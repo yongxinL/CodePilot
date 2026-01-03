@@ -43,4 +43,4 @@
 **Low Risks**: [N]
 
 ---
-See ENHANCED-PROMPT-SPECS.md for complete risk management format
+See [FEATURE-SPECS-INDEX.md](../../core/feature-specs/FEATURE-SPECS-INDEX.md) for complete risk management format

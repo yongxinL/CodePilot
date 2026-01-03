@@ -57,7 +57,7 @@ When starting Phase 3:
 7. Clarify any ambiguities
 
 ### Step 2: Setup Development Environment
-(Same as v1.0)
+Configure local development environment, install dependencies, and verify build/test infrastructure works
 
 ### Step 3: Implement Features
 
@@ -111,6 +111,8 @@ Moving to TASK-004 (User Profile)...
 
 **Token Benefit**: Load only current task (~250 tokens) vs full plan (5,000 tokens)
 
+**See also**: [Task-Level Tracking Feature Spec](../core/feature-specs/phase3-implementation/task-level-tracking.md) for updating task file status during implementation
+
 ### Step 3.5: Progressive Checkpoints (Core+ Tier)
 
 **Auto-Checkpoint Triggers**:
@@ -136,10 +138,10 @@ No blockers
 
 **Checkpoint Format**: Compressed (400 tokens)
 **Storage**: `docs/artifacts/.recovery/`
-**Complete details in**: `docs/core/02-checkpoint-system.md`
+**Complete specification in**: [Progressive Checkpoints Feature Spec](../core/feature-specs/phase3-implementation/progressive-checkpoints.md)
 
 ### Step 4-6: Code Quality, Testing, Documentation
-(Same as v1.0)
+Maintain high code quality through testing, documentation, and peer review. Follow established patterns and standards
 
 ### Step 7: Track Technical Debt (Core+ Tier)
 
@@ -160,11 +162,11 @@ No blockers
 **Incurred**: 2026-01-03
 **Rationale**: Time pressure, low immediate risk
 **Remediation**: Add DOMPurify, 4 hours
-**Target**: v1.1.0
+**Target**: v2.1.0
 **Risk**: Medium (XSS possible)
 ```
 
-**Complete register format in**: `ENHANCED-PROMPT-SPECS.md` (search for "Technical Debt Register")
+**Complete specification in**: [Technical Debt Register Feature Spec](../core/feature-specs/phase3-implementation/technical-debt-register.md)
 
 ### Step 8: Quality Gates (Core+ Tier)
 
@@ -191,7 +193,7 @@ No blockers
 **If FAIL**: Fix issues before proceeding to Phase 4
 **If PASS**: Approved to continue
 
-**Complete quality gates in**: `ENHANCED-PROMPT-SPECS.md` (search for "Quality Gates")
+**Complete specification in**: [Code Quality Gates Feature Spec](../core/feature-specs/phase3-implementation/code-quality-gates.md)
 
 ## Knowledge Capture
 
@@ -484,7 +486,7 @@ If you need full Phase 1 or 2 during Phase 3:
    - Verify no critical issues
 
 2. **Final Code Review**
-   (Same as v1.0)
+   Review all code for quality, test coverage, and adherence to standards
 
 3. **Save Artifacts**
    All documents in `docs/artifacts/phase3-implementation/`
@@ -548,6 +550,8 @@ If you need full Phase 1 or 2 during Phase 3:
 
 ---
 
-**For v1.0 content, see original 03-implementation.md**
-**For v2.0 features, see ENHANCED-PROMPT-SPECS.md**
-**For core systems, see docs/core/ directory**
+## Reference Documentation
+
+**For v2.0 features and detailed specifications**, see [FEATURE-SPECS-INDEX.md](../../core/feature-specs/FEATURE-SPECS-INDEX.md)
+
+**For core systems** (checkpoints, compression, MCP, Git), see `docs/core/` directory
