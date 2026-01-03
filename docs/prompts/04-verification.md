@@ -467,51 +467,6 @@ After release, decision log helps support and operations:
 
 ---
 
-## Session Management: Auto-Compression
-
-### How Token Compression Works During Verification
-
-During QA, security scanning, and release preparation:
-
-**Smart Compression in Phase 4:**
-- Phases 1-3 may be compressed if running multi-phase session
-- Phase 4 (current testing) NEVER compressed
-- Test results, vulnerability scans, quality gates all stay available
-
-**What gets compressed if earlier phases completed:**
-- Phase 1 (Requirements) → Key constraints and success criteria
-- Phase 2 (Architecture) → Technology decisions and design
-- Phase 3 (Implementation) → Feature summary and test coverage %
-
-**What NEVER gets compressed in Phase 4:**
-- Test results (unit, integration, e2e)
-- Security scanning results
-- Performance benchmark results
-- Bug lists and issue tracking
-- Release readiness checklist
-
-**Token recovery example:**
-```
-Phase 1-2 compressed → 77.5K tokens freed
-Phase 4 with fresh tokens:
-- Full test results space: 30K tokens
-- Security scan space: 20K tokens
-- Performance data space: 15K tokens
-- Release documents space: 20K tokens
-- Available for debugging: 57.5K tokens
-```
-
-### Recovery
-
-Full Phase 1-3 documentation always recoverable:
-```
-opencode --restore-phase 1
-opencode --restore-phase 2
-opencode --restore-phase 3
-```
-
----
-
 ## Consulting Specialists
 
 Consult specialized agents as needed for expert verification:

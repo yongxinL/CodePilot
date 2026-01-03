@@ -465,48 +465,12 @@ Use when: Data collection, AI/ML features, user tracking
 
 ---
 
-## Session Management: Auto-Compression
+## Session Token Management
 
-### How Token Compression Works
-
-During long requirements gathering sessions, the system automatically manages token usage:
-
-**If token usage reaches 75% of session limit:**
-1. System detects completed Phase 1 work
-2. Compresses requirements (50K → 7.5K tokens, 85% reduction)
-3. Keeps essential info: MVP, constraints, key decisions, risks
-4. Injects summary back into your context
-5. Frees up 42.5K tokens for continued work
-
-**You will see messages like:**
-```
-[AUTO-COMPRESSION ACTIVATED - 42.5K tokens freed]
-Compressed Phase 1 requirements summary:
-- MVP: User registration, task management, team features
-- Timeline: 6 months, 3 engineers
-- Key Risks: Node.js learning, real-time complexity
-- Full Phase 1 docs saved to: .recovery/phase1-compressed-20260103-1430.md
-Continuing with Phase 2 planning with fresh context...
-```
-
-**What gets compressed** (after Phase 1 complete):
-- Detailed user stories → 3-5 critical stories only
-- Full requirements document → 1-line summary + constraints
-- Exploratory Q&A → Key decisions only
-
-**What never gets compressed** (always available):
-- Your current work in Phase 1
-- Decision log (all decisions preserved)
-- Risk register (all risks tracked)
-
-### Recovery
-
-If you need the full Phase 1 documents after compression:
-```
-@docs Restore full Phase 1 from: .recovery/phase1-compressed-20260103-1430.md
-```
-
-The full requirements files are always available, compression only affects context usage.
+If your requirements gathering session approaches token limits during long work:
+- Use OpenCode's built-in `/compact` command to compress the session history
+- This preserves essential context (MVP, decisions, risks) while freeing up tokens
+- No manual checkpoint management needed - OpenCode handles it automatically
 
 ---
 

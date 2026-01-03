@@ -85,29 +85,6 @@ Status: ⏳ Pending
 Impact: Enables Feature [#34], provides 15-20% schedule protection
 ```
 
-### **Task 3: Auto-Compression System** (9-13 hours)
-
-```
-🔄 Files affected: opencode.json, .recovery/, docs/core/, all agent prompts
-
-Phase 1: Token Monitoring (2-3h)
-Phase 2: Compression Engine (3-4h)
-Phase 3: Trigger & Recovery (2-3h)
-Phase 4: Integration & Testing (2-3h)
-
-How it works:
-- Session starts: 200K token limit available
-- Work continues: tokens used up to 150K
-- [AUTOMATIC] At 75% threshold:
-  - Summarize completed phases (50K → 7.5K tokens)
-  - Free up 42.5K tokens
-  - Continue session seamlessly
-- Process repeats as needed
-
-Status: ⏳ Pending
-Impact: Enables Feature [#30], allows unlimited session duration
-```
-
 ---
 
 ## 📈 Feature Implementation Timeline
@@ -117,9 +94,8 @@ COMPLETED ✅                  REMAINING ⏳
 ────────────────────────────────────────────────────────────
 Phase 1-4: 24/26 (92%)      Task 1: 3 features (9-12h)
 - All phases at target       Task 2: 1 feature (2-3h)
-- Phase 4 now 100%           Task 3: 1 feature (9-13h)
-- 8 features added           ─────────────────────
-                             Total: 5 features (20-28h)
+- Phase 4 now 100%           ─────────────────────
+- 8 features added           Total: 4 features (11-15h)
 ```
 
 ---
@@ -137,12 +113,6 @@ Phase 1-4: 24/26 (92%)      Task 1: 3 features (9-12h)
 ✅ Hidden costs/delays surfaced early
 ✅ 15-20% schedule protection
 ✅ Prevents "surprise" scope creep
-
-### **After Task 3 (Auto-Compression)**
-✅ Sessions continue for hours without interruption
-✅ Large projects manageable in single session
-✅ No manual checkpoint intervention needed
-✅ Unlimited context management
 
 ---
 
@@ -178,16 +148,6 @@ Phase 1-4: 24/26 (92%)      Task 1: 3 features (9-12h)
 - [ ] Create approval workflow
 - [ ] Test with sample changes
 
-### **Task 3: Auto-Compression**
-- [ ] Configure opencode.json with compression settings
-- [ ] Add token counter to system
-- [ ] Create compression summarization logic
-- [ ] Implement trigger detection (75% threshold)
-- [ ] Build recovery checkpoint system
-- [ ] Create monitoring/logging
-- [ ] Add messaging to agent prompts
-- [ ] Test full compression flow
-
 ---
 
 ## 📚 Key Documents
@@ -206,22 +166,19 @@ Phase 1-4: 24/26 (92%)      Task 1: 3 features (9-12h)
 **A:**
 1. Start with Task 1 (Template Integration) - straightforward copy-paste of sections
 2. Then Task 2 (Change Manager) - self-contained new subagent
-3. Finally Task 3 (Auto-Compression) - complex but isolated system
 
-**Time estimate if focused: 20-28 hours over 2-3 days**
+**Time estimate if focused: 11-15 hours over 1-2 days**
 
 ### **Q: Which task provides most value immediately?**
 **A:**
 - **Task 1** (Templates): Enables knowledge capture starting immediately
 - **Task 2** (Change Manager): Protects schedule right away
-- **Task 3** (Compression): Quality-of-life improvement, not blocking
 
-**Recommendation**: Do Tasks 1 & 2 first (high value), Task 3 last (nice-to-have)
+**Recommendation**: Do both tasks for solid coverage
 
 ### **Q: Can tasks be done in parallel?**
 **A:**
 - Tasks 1 & 2 are independent → Can be done in parallel
-- Task 3 requires understanding token management → Should be done after 1 & 2
 
 ### **Q: What's the difference between each implementation?**
 
@@ -234,20 +191,6 @@ Phase 1-4: 24/26 (92%)      Task 1: 3 features (9-12h)
 - Create 1 new file (~500-800 lines)
 - Based on @portfolio-manager template
 - Specific workflows for change evaluation
-
-**Task 3 (Compression)**: Implementing system feature
-- Touch multiple files (config, core, agents)
-- Add compression logic
-- Requires token management understanding
-
-### **Q: What happens if I only do Tasks 1 & 2?**
-**A:**
-- Feature coverage: 85% (32/38 features) - very good
-- Session management: Status quo (manual checkpoints)
-- Organizational learning: Enabled ✅
-- Change management: Enabled ✅
-
-**Recommendation**: Do at least Tasks 1 & 2 for solid coverage
 
 ---
 
@@ -267,15 +210,6 @@ Phase 1-4: 24/26 (92%)      Task 1: 3 features (9-12h)
 - [ ] Approval workflow routed correctly
 - [ ] Sample change request processed successfully
 
-### **Task 3 Complete When:**
-- [ ] opencode.json has compression configuration
-- [ ] Token counter operational
-- [ ] Auto-compression triggers at 75% threshold
-- [ ] Compression reduces context by 80%+ for completed phases
-- [ ] Recovery checkpoint system working
-- [ ] Session continues seamlessly through compressions
-- [ ] Load testing shows sessions continue for 3+ hours
-
 ---
 
 ## 🔗 Related Features
@@ -283,7 +217,6 @@ Phase 1-4: 24/26 (92%)      Task 1: 3 features (9-12h)
 | Feature # | Name | Task | Status |
 |-----------|------|------|--------|
 | [#28] | Knowledge Base Capture | Task 1 | ⏳ Pending |
-| [#30] | Session Compact Mode | Task 3 | ⏳ Pending |
 | [#34] | Change Request Process | Task 2 | ⏳ Pending |
 | [#36] | Risk Register | Task 1 | ⏳ Pending |
 | [#37] | Decision Log | Task 1 | ⏳ Pending |
@@ -303,12 +236,6 @@ Phase 1-4: 24/26 (92%)      Task 1: 3 features (9-12h)
 - Focus on quantification (avoid opinions)
 - Include approval decision tree
 - Document using decision log
-
-### **For Task 3 (Compression)**
-- Start with token counter (foundation)
-- Test compression on phase 1 outputs first
-- Build recovery before doing active compression
-- Add logging to track compression effectiveness
 
 ---
 
@@ -331,15 +258,11 @@ AFTER TASK 2 (Change Manager):
 - Change Management: Operational
 - Time: +2-3 hours
 
-AFTER TASK 3 (Auto-Compression):
-- Feature Coverage: 84% (32/38)
-- Session Management: Enhanced
-- Time: +9-13 hours
-
-COMPLETE SYSTEM:
-- Feature Coverage: 95% (36/38)
-- All critical systems: Operational
-- Total time: ~44 hours from start
+COMPLETE SYSTEM (Tasks 1 & 2):
+- Feature Coverage: 82% (31/38)
+- Organizational Learning: Operational ✅
+- Change Management: Operational ✅
+- Total time: ~23-27 hours from start
 ```
 
 ---
@@ -354,14 +277,13 @@ COMPLETE SYSTEM:
 - ✅ Portfolio management for multi-project
 - ✅ Data visualization capabilities
 
-**What's next (20-28 hours):**
+**What's next (11-15 hours):**
 - ⏳ Organizational learning system (Task 1)
 - ⏳ Change management (Task 2)
-- ⏳ Session management (Task 3)
 
-**Getting to 95% coverage:**
-Realistic: 2-3 more days of focused work
-Result: Production-ready framework covering nearly all features
+**Getting to 82% coverage:**
+Realistic: 1-2 more days of focused work
+Result: Production-ready framework with organizational learning and change management
 
 ---
 
