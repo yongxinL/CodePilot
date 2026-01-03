@@ -78,7 +78,7 @@ case $tier_choice in
 esac
 
 echo ""
-echo "Selected: ${tier_name^^} tier"
+echo "Selected: ${tier_name} tier"
 echo ""
 
 # Git integration (if Core+ or higher)
@@ -220,7 +220,7 @@ echo "✅ Created .gitignore"
 echo ""
 echo "✨ Initialization complete!"
 echo ""
-echo "Tier: ${tier_name^^}"
+echo "Tier: ${tier_name}"
 echo "Git: $([ "$git_enabled" = "true" ] && echo "✅ $git_mode" || echo "❌ disabled")"
 echo "MCP: $([ "$mcp_enabled" = "true" ] && echo "✅ $mcp_preferred" || echo "❌ disabled")"
 echo ""
