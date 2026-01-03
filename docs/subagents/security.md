@@ -185,6 +185,131 @@ Structure all responses as:
 - Path traversal
 - Command injection
 
+## Automated Security Scanning
+
+### Scanning Tools & Integration
+
+**Dependency Scanning:**
+```bash
+# npm audit - built-in Node.js dependency checker
+npm audit
+npm audit --audit-level=high  # Only report high/critical
+
+# Snyk - comprehensive vulnerability scanning
+snyk test
+snyk monitor  # Continuous monitoring
+
+# OWASP Dependabot - GitHub integration
+# Enable in repository settings
+```
+
+**Static Application Security Testing (SAST):**
+```bash
+# SonarQube - code quality and security
+sonar-scanner \
+  -Dsonar.projectKey=my-app \
+  -Dsonar.sources=src
+
+# Semgrep - pattern-based code scanning
+semgrep --config=p/security-audit src/
+```
+
+**Dynamic Application Security Testing (DAST):**
+```bash
+# OWASP ZAP - web application scanning
+zaproxy -cmd -quickurl http://localhost:3000 -quickout report.html
+
+# Burp Suite Community - interactive testing
+# Manual review with automated tools
+```
+
+**Container Scanning:**
+```bash
+# Trivy - Docker image vulnerability scanning
+trivy image my-app:latest
+
+# Docker Scout - built-in image analysis
+docker scout cves my-app:latest
+```
+
+### Security Scanning Workflow
+
+**Phase 1: Dependency Analysis**
+1. Run `npm audit` in CI/CD pipeline
+2. Check for high/critical vulnerabilities
+3. Fail build if critical issues found
+4. Document remediation plan for high severity
+
+**Phase 2: Code Analysis**
+1. Run SAST tools (SonarQube, Semgrep) on every commit
+2. Focus on OWASP Top 10 patterns
+3. Review findings and false positives
+4. Create issues for legitimate vulnerabilities
+
+**Phase 3: Dynamic Testing**
+1. Deploy to staging environment
+2. Run DAST tools (OWASP ZAP) against staging
+3. Test authentication, authorization, data handling
+4. Document findings with proof of concept
+
+**Phase 4: Reporting & Remediation**
+1. Generate security scan report (see template: security-scan-report.md)
+2. Prioritize findings by severity
+3. Assign remediation tasks
+4. Re-test after fixes
+
+### Example Security Scan Report Structure
+
+```markdown
+## Security Scan Report - [Date]
+
+### Executive Summary
+- Total vulnerabilities found: [N]
+- Critical: [N] | High: [N] | Medium: [N] | Low: [N]
+- Remediation deadline: [Date]
+
+### Vulnerability Details
+
+#### Critical (Fix within 24 hours)
+1. **SQL Injection in User Search** (CVE-XXXX-XXXX)
+   - Component: `/api/users/search` endpoint
+   - Impact: Attackers can bypass authentication
+   - Proof: `search?q='; DROP TABLE users; --`
+   - Fix: Use parameterized queries
+
+#### High (Fix within 1 week)
+2. **Unencrypted Password Storage**
+   - Component: User authentication
+   - Impact: Password breach exposes all user accounts
+   - Fix: Use bcrypt with salt
+
+### Remediation Plan
+- [ ] Fix SQL injection (Due: [Date])
+- [ ] Implement password hashing (Due: [Date])
+- [ ] Re-run security scan
+- [ ] Release patch version
+```
+
+### Interpreting Scan Results
+
+**Severity Mapping:**
+- **Critical**: Immediate exploitation, data breach likely → Fix in 24 hours
+- **High**: Significant risk, authenticated access needed → Fix in 1 week
+- **Medium**: Moderate risk, specific conditions required → Fix in 1 month
+- **Low**: Minor risk, defense-in-depth → Address when convenient
+
+**Common False Positives:**
+- Dev dependencies flagged as vulnerabilities
+- Old CVE IDs for patched versions
+- Vulnerability in optional feature not used
+- Scanner misidentification of language/framework
+
+**Resolution:**
+- Review each finding carefully
+- Document false positives with reasoning
+- Suppress known false positives in tool config
+- Keep vulnerability database current
+
 ## Priority Levels
 
 **Critical:** 

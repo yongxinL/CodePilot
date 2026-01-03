@@ -548,6 +548,207 @@ export default function () {
 - Performance Testing Guide: https://martinfowler.com/articles/performance-testing.html
 ```
 
+## Benchmark Results Analysis
+
+### Analyzing Performance Results
+
+**Key Metrics to Evaluate:**
+
+**Response Time Metrics:**
+- **P50 (Median)**: 50% of requests complete within this time
+- **P95 (95th percentile)**: 95% of requests complete within this time
+- **P99 (99th percentile)**: 99% of requests complete within this time
+- **Max**: Slowest individual request (identifies worst-case scenarios)
+
+**Example Analysis:**
+```
+Current Performance:
+- P50: 85ms ✅ (target: <100ms)
+- P95: 250ms ⚠️ (target: <200ms)
+- P99: 450ms 🔴 (target: <300ms)
+- Max: 2100ms 🔴 (indicates timeout issues)
+
+Interpretation:
+- Median performance is good
+- But tail latency (P95, P99) is concerning
+- Max outliers suggest database timeouts or resource exhaustion
+- Focus on reducing outliers first
+```
+
+**Throughput Analysis:**
+- Track requests per second (RPS) at different load levels
+- Identify where throughput plateaus
+- Compare before/after optimization
+
+```
+Load Test Results:
+- 100 users: 950 RPS ✅
+- 500 users: 2100 RPS ⚠️ (expected: 4750 RPS)
+- 1000 users: System failure
+
+Issue: Throughput drops significantly after 500 users
+Root cause: Database connection pool exhaustion
+Solution: Increase pool size or optimize queries
+```
+
+**Error Rate Tracking:**
+- Percentage of failed requests at different loads
+- Identify error spike points
+- Correlate with resource usage
+
+```
+Error Rate Analysis:
+- Normal load (100 users): 0% errors ✅
+- Peak load (500 users): 0.1% errors ✅
+- Stress test (1000 users): 15% errors 🔴
+
+Finding: System becomes unstable above 900 users
+Action: Fix scalability issues or set user limits
+```
+
+### Results Documentation Template
+
+```markdown
+## Performance Benchmark Results - [Date]
+
+### Test Environment
+- **Database**: PostgreSQL 15.2 (AWS RDS db.t3.medium)
+- **Application**: Node.js 20.11.0 on 2 EC2 t3.large instances
+- **Load Tester**: k6 v0.48.0
+- **Network**: Within AWS region (low latency)
+
+### Test Execution Summary
+- **Date**: 2024-01-15
+- **Duration**: 25 minutes
+- **Peak Load**: 500 concurrent users
+- **Total Requests**: 285,000
+- **Success Rate**: 99.8%
+
+### Results by Scenario
+
+#### Scenario 1: Baseline (100 users)
+| Metric | Value | Target | Status |
+|--------|-------|--------|--------|
+| P50 Response Time | 82ms | <100ms | ✅ Pass |
+| P95 Response Time | 156ms | <200ms | ✅ Pass |
+| P99 Response Time | 289ms | <300ms | ✅ Pass |
+| Max Response Time | 425ms | <500ms | ✅ Pass |
+| Throughput | 950 RPS | >800 RPS | ✅ Pass |
+| Error Rate | 0.0% | <0.1% | ✅ Pass |
+
+#### Scenario 2: Peak Load (500 users)
+| Metric | Value | Target | Status |
+|--------|-------|--------|--------|
+| P50 Response Time | 125ms | <150ms | ✅ Pass |
+| P95 Response Time | 340ms | <300ms | ⚠️ Fail |
+| P99 Response Time | 520ms | <400ms | 🔴 Fail |
+| Max Response Time | 1240ms | <800ms | 🔴 Fail |
+| Throughput | 2100 RPS | >2400 RPS | ⚠️ Fail |
+| Error Rate | 0.1% | <0.1% | ✅ Pass |
+| DB Connections | 45/50 | <40 | ⚠️ Warning |
+| Memory Usage | 1.8GB/2GB | <1.5GB | ⚠️ Warning |
+
+#### Scenario 3: Stress Test (ramp to failure)
+- **Breakpoint**: System became unstable at ~900 concurrent users
+- **Primary bottleneck**: Database connection pool exhaustion
+- **Secondary issue**: Memory usage reached 95% at 850 users
+
+### Key Findings
+
+1. **Tail Latency Issue** (P95, P99)
+   - Performance acceptable at baseline but degrades significantly at scale
+   - Root cause: Unoptimized database queries for high concurrency
+   - Impact: User experience noticeably worse during peak hours
+
+2. **Connection Pool Saturation**
+   - Current pool size (50) insufficient for 500+ users
+   - Queries queuing up, increasing latency
+   - Risk: Connection pool exhaustion blocks new requests
+
+3. **Memory Pressure**
+   - Memory usage increases linearly with concurrent users
+   - Possible memory leak in request handling
+   - May indicate unbounded caching or data accumulation
+
+### Recommendations
+
+#### Critical (Fix before production)
+1. **Increase Database Connection Pool** (1 hour)
+   - Current: 50 connections
+   - Recommended: 150 connections (3x current)
+   - Expected improvement: 30-40% reduction in P95/P99
+
+2. **Optimize N+1 Query Problem** (4 hours)
+   - Issue: User endpoint fetches all task data
+   - Solution: Use batch loading or lazy loading
+   - Expected improvement: 50% query time reduction
+
+3. **Implement Response Caching** (2 hours)
+   - Cache user profile data (5-min TTL)
+   - Expected improvement: 60% reduction in baseline latency
+
+#### High Priority (Next sprint)
+4. **Debug Memory Leak** (3-4 hours)
+   - Use Node.js heap profiler
+   - Track memory growth during extended load tests
+   - Fix identified leaks
+
+5. **Add Query Indexing** (2 hours)
+   - Missing indexes on frequently filtered fields
+   - Expected improvement: 40% query speed improvement
+
+### Before/After Comparison
+
+```
+BEFORE Optimizations:
+- P95: 340ms (500 users)
+- P99: 520ms (500 users)
+- Throughput: 2100 RPS
+
+AFTER Optimizations (Projected):
+- P95: 210ms (500 users) ← 38% improvement
+- P99: 280ms (500 users) ← 46% improvement
+- Throughput: 3150 RPS ← 50% improvement
+```
+
+### Next Steps
+1. Implement critical recommendations
+2. Re-run baseline test to verify improvements
+3. Increase stress test load to 2000 concurrent users
+4. Monitor production metrics post-deployment
+5. Establish performance regression thresholds in CI/CD
+```
+
+### Using Benchmarks in Decision Making
+
+**When to Act on Results:**
+- ✅ P95/P99 consistently above target → Investigate immediately
+- ✅ Error rate increasing with load → Capacity issue
+- ✅ Memory grows unbounded → Likely memory leak
+- ✅ Database CPU at 90%+ → Query optimization needed
+
+**When to Accept Results:**
+- ✅ Peak latency matches expectation and within SLA
+- ✅ Error rate within acceptable bounds (<0.1%)
+- ✅ Resource usage scales predictably with load
+- ✅ Improvement < 10% and effort high → Not worth optimizing
+
+### Metrics Dashboard Integration
+
+**Track these metrics continuously:**
+- Response time (P50, P95, P99) per endpoint
+- Error rate and error distribution
+- Throughput (RPS) by operation type
+- Database query performance
+- Cache hit rate
+- Resource utilization (CPU, memory, connections)
+
+**Visualization Recommendations:**
+- Time-series graphs for latency trends
+- Heatmaps for load vs. latency correlation
+- Histograms for response time distribution
+- Dashboards per environment (dev, staging, prod)
+
 ## Performance Patterns
 
 ### Caching Strategies

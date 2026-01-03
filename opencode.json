@@ -3,6 +3,8 @@
   
   "default_agent": "requirements",
   
+  "model": "anthropic/claude-sonnet-4-20250514",
+  
   "tools": {
     "write": true,
     "edit": true,
@@ -23,6 +25,7 @@
     "requirements": {
       "description": "Phase 1: Requirements Analysis - Deconstruct requirements and create specifications",
       "mode": "primary",
+      "model": "anthropic/claude-sonnet-4-20250514",
       "temperature": 0.3,
       "prompt": "{file:./docs/prompts/01-requirement.md}",
       "max_iterations": 50,
@@ -37,6 +40,7 @@
     "architect": {
       "description": "Phase 2: Planning & Architecture - Create technical designs and project plans",
       "mode": "primary",
+      "model": "anthropic/claude-sonnet-4-20250514",
       "temperature": 0.3,
       "prompt": "{file:./docs/prompts/02-planning.md}",
       "max_iterations": 50,
@@ -51,6 +55,7 @@
     "engineer": {
       "description": "Phase 3: Implementation - Execute development with best practices",
       "mode": "primary",
+      "model": "anthropic/claude-sonnet-4-20250514",
       "temperature": 0.2,
       "prompt": "{file:./docs/prompts/03-implementation.md}",
       "max_iterations": 100,
@@ -65,6 +70,7 @@
     "verifier": {
       "description": "Phase 4: Verification & Release - Test, validate, and prepare deployment",
       "mode": "primary",
+      "model": "anthropic/claude-sonnet-4-20250514",
       "temperature": 0.2,
       "prompt": "{file:./docs/prompts/04-verification.md}",
       "max_iterations": 50,
@@ -79,6 +85,7 @@
     "master": {
       "description": "Phase 5: Master Control - Orchestrate multi-phase projects",
       "mode": "primary",
+      "model": "anthropic/claude-sonnet-4-20250514",
       "temperature": 0.4,
       "prompt": "{file:./docs/prompts/05-master-control.md}",
       "max_iterations": 30,
@@ -90,9 +97,25 @@
       }
     },
     
+    "data_interpreter": {
+      "description": "Data Interpreter - Visualize metrics and performance data",
+      "mode": "primary",
+      "model": "anthropic/claude-sonnet-4-20250514",
+      "temperature": 0.3,
+      "prompt": "{file:./docs/prompts/06-data-interpreter.md}",
+      "max_iterations": 20,
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "read": true
+      }
+    },
+    
     "security": {
       "description": "Security Engineer - Security assessment and recommendations",
       "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-20250514",
       "temperature": 0.2,
       "prompt": "{file:./docs/subagents/security.md}",
       "tools": {
@@ -106,6 +129,7 @@
     "ux": {
       "description": "UX Researcher - User experience and accessibility analysis",
       "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-20250514",
       "temperature": 0.4,
       "prompt": "{file:./docs/subagents/ux.md}",
       "tools": {
@@ -119,6 +143,7 @@
     "performance": {
       "description": "Performance Specialist - Optimization and efficiency",
       "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-20250514",
       "temperature": 0.2,
       "prompt": "{file:./docs/subagents/performance.md}",
       "tools": {
@@ -132,6 +157,7 @@
     "devops": {
       "description": "DevOps Engineer - Deployment and infrastructure guidance",
       "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-20250514",
       "temperature": 0.3,
       "prompt": "{file:./docs/subagents/devops.md}",
       "tools": {
@@ -145,6 +171,7 @@
     "qa": {
       "description": "QA Engineer - Testing strategy and quality assurance",
       "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-20250514",
       "temperature": 0.3,
       "prompt": "{file:./docs/subagents/qa.md}",
       "tools": {
@@ -158,6 +185,7 @@
     "docs": {
       "description": "Technical Writer - Documentation creation and review",
       "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-20250514",
       "temperature": 0.4,
       "prompt": "{file:./docs/subagents/docs.md}",
       "tools": {
@@ -171,8 +199,23 @@
     "ethics": {
       "description": "Ethics Advisor - Ethical implications and accessibility",
       "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-20250514",
       "temperature": 0.4,
       "prompt": "{file:./docs/subagents/ethics.md}",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "read": true
+      }
+    },
+    
+    "version_checker": {
+      "description": "Version Checker - Version verification and security advisories",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-20250514",
+      "temperature": 0.2,
+      "prompt": "{file:./docs/subagents/version-checker.md}",
       "tools": {
         "write": false,
         "edit": false,
@@ -216,6 +259,16 @@
     "status": {
       "description": "Show project status",
       "template": "Provide comprehensive status report on current progress, artifacts, and next steps"
+    },
+    
+    "checkpoint": {
+      "description": "Create recovery checkpoint",
+      "template": "Create compressed checkpoint for session recovery"
+    },
+    
+    "upgrade": {
+      "description": "Upgrade feature tier",
+      "template": "Upgrade to tier: $TIER (minimal|core|advanced|full)"
     }
   }
 }

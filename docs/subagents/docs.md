@@ -705,6 +705,306 @@ API documentation exists but lacks critical information about error responses, a
 - Troubleshooting common issues
 - Progressive disclosure (basic → advanced)
 
+## Stakeholder Communication Templates
+
+### Purpose
+Provide clear, timely communication to stakeholders at each project phase, building trust and alignment.
+
+### Communication Cadence by Phase
+
+**Phase 1: Requirements** - Weekly status emails
+**Phase 2: Planning** - Bi-weekly architecture reviews
+**Phase 3: Implementation** - Daily standups, weekly progress
+**Phase 4: Verification** - Testing reports, release readiness
+**Phase 5: Master Control** - Portfolio dashboards, monthly reviews
+
+### Status Email Template
+
+**Subject:** [Project Name] - Weekly Status Report - Week of [Date]
+
+```markdown
+## Status: ON TRACK / AT RISK / BLOCKED
+
+### Summary
+One sentence overview of this week's progress and any blockers.
+
+### Accomplishments
+- ✅ Feature X implemented and tested
+- ✅ Performance optimization complete (30% improvement)
+- ✅ Security review passed with 0 critical findings
+
+### Current Work
+- 🔄 Database migration in progress (65% complete)
+- 🔄 User authentication integration (4/5 subtasks done)
+
+### Upcoming Week
+- [ ] Complete database migration
+- [ ] Deploy staging environment
+- [ ] Begin QA testing
+
+### Blockers / Risks
+- ⚠️ Third-party API delayed (impacts feature release by 2 days)
+- ⚠️ Database performance issues in load testing (investigating)
+
+### Key Metrics
+| Metric | This Week | Target | Status |
+|--------|-----------|--------|--------|
+| Completed Tasks | 8/10 | 10 | ⚠️ |
+| Test Coverage | 78% | 80% | 🔴 |
+| Code Review Time | 2 days | <1 day | ⚠️ |
+
+### Questions / Decisions Needed
+- [ ] Prioritize feature X vs security hardening?
+- [ ] Budget increase for additional testing?
+
+### Next Steps
+- [ ] Executive steering committee meeting Tuesday
+- [ ] Architecture review with stakeholders Thursday
+- [ ] Performance optimization plan due Friday
+```
+
+### Executive Summary Template
+
+**For C-Level & Non-Technical Stakeholders**
+
+```markdown
+## [Project Name] - Executive Summary
+**Report Date:** [Date]
+
+### Business Impact
+- **Revenue Impact**: Expected $X increase in annual recurring revenue
+- **Timeline**: Launch on [Date] (on track / at risk)
+- **Budget**: $X of $Y spent (XX% utilization)
+
+### Key Achievements
+- ✅ Core functionality complete (Feature A, B, C working)
+- ✅ Security audit passed with flying colors
+- ✅ Performance exceeds requirements (4.2s vs 5s target)
+
+### Current Status
+**Overall Project Health: 🟢 GREEN**
+
+| Area | Status | Notes |
+|------|--------|-------|
+| Scope | 🟢 On track | All features on schedule |
+| Schedule | 🟢 On track | Launch date intact |
+| Budget | 🟡 Caution | 2% over budget (minor overages) |
+| Risk | 🟢 Managed | Third-party API delay mitigated |
+
+### Top Risks & Mitigations
+1. **Competitive Launch** (Medium Impact)
+   - Risk: Competitor releases similar product in 3 weeks
+   - Mitigation: Accelerate feature X (adds 2 days effort)
+   - Owner: Product Manager
+
+2. **Market Demand Uncertainty** (High Impact)
+   - Risk: Beta user engagement lower than projected
+   - Mitigation: Pivot marketing to different segment
+   - Owner: Marketing Lead
+
+### Investment Justification
+- **ROI Timeline**: 12 months (break-even)
+- **Market Opportunity**: $50M TAM (total addressable market)
+- **Competitive Advantage**: 6-month head start
+
+### Recommendation
+**Proceed with launch as planned.** All metrics indicate successful project delivery with acceptable risk profile.
+```
+
+### Demo Script Template
+
+**For User Demonstrations & Feature Showcases**
+
+```markdown
+## Demo Script: [Feature Name]
+
+### Audience
+- Product Managers, Marketing, Customer Success
+
+### Setup (2 minutes)
+1. Log in with demo account: demo@example.com / password
+2. Navigate to Dashboard
+3. Show existing data (5 records visible)
+
+### Demo Flow (10 minutes)
+
+**Scene 1: Problem** (2 min)
+- "Users currently have to manually enter data in 5 different forms"
+- Show current workaround (show 5 forms)
+- Pain point: Takes 20 minutes per record
+
+**Scene 2: Solution** (4 min)
+- Click "New Record" button
+- Show unified form with all fields
+- Fill in sample data: Name, Email, Phone, Address
+- *Highlight*: Auto-save indicators, inline validation
+
+**Scene 3: Advanced Features** (3 min)
+- Show bulk import (upload CSV)
+- Demo: Customers can import 100 records in 30 seconds
+- Show search & filtering: Find records instantly
+- Demonstrate export to PDF/Excel
+
+**Scene 4: Impact** (1 min)
+- "What used to take 20 minutes now takes 2 minutes"
+- 10x productivity improvement
+- Customers save 150+ hours per year
+
+### Key Talking Points
+- ✅ Solves real problem (mentioned by X% of beta users)
+- ✅ Easy to use (95% of users mastered it in <5 minutes)
+- ✅ Saves customers significant time and money
+
+### Q&A Guidance
+- **Q: When is this available?** → Launch date: [Date]
+- **Q: Will pricing increase?** → No, included at current tier
+- **Q: Can we customize the form?** → Yes, available Q2 2024
+
+### Follow-up Actions
+- Gather feedback form (QR code)
+- Sign up for early access: [link]
+- Next demo: [Date & Time]
+```
+
+### Incident/Issue Communication Template
+
+**When Problems Arise**
+
+```markdown
+## Incident Notice: [System] Outage
+
+**Severity**: CRITICAL / HIGH / MEDIUM / LOW
+**Status**: INVESTIGATING / MITIGATING / RESOLVED
+**Duration**: [Start time] - [End time]
+
+### What Happened
+Brief description of the incident visible to customers.
+
+**For Customers:**
+- System was unavailable from 10:30 PM to 10:45 PM EST
+- No data was lost or compromised
+- We've identified the root cause and implemented a fix
+
+**Technical Details (for engineers):**
+- Root cause: Database connection pool exhaustion
+- Trigger: Sudden spike in traffic (3x normal load)
+- Resolution: Added connection pool failover
+
+### Impact
+- **Customers Affected**: 15% of user base
+- **Data Loss**: None
+- **Security Impact**: None
+- **Financial Impact**: ~$2,000 (estimated revenue impact)
+
+### Next Steps
+1. Monitor system for 24 hours
+2. Implement permanent scaling solution
+3. Conduct incident post-mortem (internally)
+4. Customer credit for affected accounts
+
+### How We're Preventing This
+- [ ] Auto-scaling for database connections
+- [ ] Better monitoring alerts (earlier warning)
+- [ ] Load testing before peak periods
+
+### Questions?
+Contact support@example.com or call [number]
+```
+
+### Change Communication Template
+
+**When Requirements or Scope Changes**
+
+```markdown
+## Change Notification: [Feature/Component]
+
+### What's Changing
+Brief summary: Why the change, what's affected, what customers need to know
+
+### Timeline
+- **Announcement Date**: [Date]
+- **Effective Date**: [Date]
+- **Migration Period**: [Duration]
+
+### Impact
+| Stakeholder | Impact | Action Required |
+|-------------|--------|-----------------|
+| Customers | Feature X renamed | Update bookmarks |
+| Support | New FAQ needed | Review documentation |
+| Sales | New talking points | Attend training |
+| Dev Team | API endpoint changed | Update integration |
+
+### Migration Plan
+1. **Phase 1** ([Date]): Old feature remains, new feature available
+2. **Phase 2** ([Date]): Both available, customers can migrate
+3. **Phase 3** ([Date]): Old feature deprecated, migration recommended
+4. **Phase 4** ([Date]): Old feature removed
+
+### Resources
+- Migration guide: [link]
+- FAQ: [link]
+- Support email: [address]
+- Training webinar: [date & time]
+
+### Questions / Concerns
+Reply to this email or contact [contact info]
+```
+
+### Dashboard Report Template
+
+**For Executive Dashboards & Regular Reviews**
+
+```markdown
+## Project Dashboard - [Month] [Year]
+
+### Overall Status: 🟢 ON TRACK
+
+| Area | Metric | This Period | Target | Trend |
+|------|--------|------------|--------|-------|
+| **Schedule** | % Complete | 65% | 60% | 📈 Ahead |
+| | Remaining Days | 32 | 35 | ✅ Buffer |
+| **Quality** | Test Coverage | 81% | 80% | ✅ Met |
+| | Critical Bugs | 0 | 0 | ✅ Good |
+| **Resources** | Team Utilization | 92% | 85% | 📈 High |
+| | Budget Used | $185K | $200K | ✅ Under |
+| **Velocity** | Tasks Completed | 42 | 40 | 📈 Above |
+| | Blocked Tasks | 1 | 0 | ⚠️ Watch |
+
+### This Period's Highlights
+- 🎉 Security audit passed with zero findings
+- 🎉 Performance optimization exceeded targets (40% improvement)
+- ⚠️ Database migration hit complexity bump (resolved)
+
+### Next Period Focus
+- [ ] Complete core feature testing
+- [ ] Begin stakeholder training
+- [ ] Finalize deployment procedures
+
+### Risks & Mitigations
+| Risk | Likelihood | Impact | Owner | Mitigation |
+|------|-----------|--------|-------|------------|
+| Third-party API delay | 30% | High | PM | Parallel development |
+| Resource turnover | 20% | Medium | HR | Cross-training plan |
+```
+
+### Communication Checklist
+
+**Every project phase should include:**
+- [ ] Weekly status email (all stakeholders)
+- [ ] Bi-weekly demo (product, customer success)
+- [ ] Monthly executive summary (leadership)
+- [ ] Real-time incident notifications (when issues occur)
+- [ ] Milestone announcements (major achievements)
+- [ ] Risk/blocker escalation (as needed)
+- [ ] Stakeholder feedback collection (monthly)
+
+### Tone Guidelines
+
+- **Technical**: Precise, jargon-acceptable, detailed
+- **Executive**: Business-focused, clear ROI, concise
+- **Customer-Facing**: Friendly, reassuring, action-oriented
+- **Crisis/Incident**: Transparent, empathetic, factual
+
 ## Integration with Primary Agents
 
 **After providing assessment:**
