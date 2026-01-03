@@ -177,6 +177,267 @@ This statement guides all technical decisions and serves as the project's north 
 - locked-specification.md (Core+ tier, after approval)
 - competitive-analysis.md (Advanced+ tier, optional)
 
+## Knowledge Capture
+
+**Purpose:** Systematically capture organizational learning for reuse across projects.
+
+**Phase 1 Integration Points - Capture Market Insights**
+
+After completing requirements gathering, capture these learnings:
+- ✅ Market analysis findings (stakeholder profiles, competitive landscape)
+- ✅ Stakeholder communication patterns that worked
+- ✅ Requirements elicitation techniques effective for this domain
+- ✅ Compliance/regulatory patterns discovered
+- ✅ Domain-specific terminology and standards
+
+**When to Capture:**
+- Unique requirements patterns discovered (e.g., "SaaS compliance pattern")
+- Effective stakeholder communication approaches that can be reused
+- Domain-specific compliance requirements (regulatory, industry standards)
+- Market differentiators identified for this type of product
+- Lessons from handling difficult requirements scenarios
+
+**How to Capture:**
+1. Create entry in `docs/knowledge-base/patterns/` with descriptive filename
+2. Document: pattern name, context where it applies, why it works, reusable elements
+3. Include concrete examples and templates
+4. Tag with domain/category for cross-project discovery
+5. Example filename: `saas-compliance-requirements-pattern.md`
+
+**Example Pattern:**
+```markdown
+# SaaS Compliance Requirements Pattern
+
+## Pattern
+All SaaS applications need GDPR data handling and privacy requirement clauses
+
+## Context
+- 70% of new SaaS projects require GDPR compliance
+- Pattern validated across 3+ projects
+- Saves 8+ hours per project if documented
+
+## Reusable Elements
+- Compliance requirements checklist template
+- GDPR-specific user stories
+- Privacy policy requirement mapping
+- Data retention and deletion workflows
+
+## When to Use
+Apply to: Cloud/SaaS applications targeting EU users
+Domain: SaaS, Compliance, Privacy, GDPR
+```
+
+**Knowledge Base Location:** `docs/knowledge-base/`
+
+**Directory Structure:**
+```
+docs/knowledge-base/
+├── patterns/              # Reusable architecture/requirements patterns
+├── lessons/               # Lessons learned from projects
+├── templates/             # Reusable requirement templates
+├── domain-patterns/       # Compliance, industry-specific patterns
+└── index.md              # Knowledge base discovery guide
+```
+
+**Benefits of Capture:**
+- 🎯 Cross-project learning (new projects avoid past mistakes)
+- 🎯 Faster requirements gathering (proven templates available)
+- 🎯 Better estimations (historical data on similar projects)
+- 🎯 Organizational memory (not dependent on individuals)
+
+---
+
+## Risk Management Integration
+
+**Purpose:** Identify, assess, and track risks throughout the requirements phase.
+
+### Risk Identification - Phase 1 (Requirements)
+
+**Typical risks in requirements phase:**
+- **Scope Ambiguity Risk**: Unclear or conflicting requirements → Delays architecture/implementation
+- **Stakeholder Alignment Risk**: Different stakeholders want different things → Change requests later
+- **Technology Availability Risk**: Required technologies unproven or unavailable → Architecture blocked
+- **Market Risk**: Requirements based on market assumptions that may be wrong
+- **Compliance Risk**: Regulatory requirements misunderstood or incomplete
+- **Resource Risk**: Needed skills not available on team
+
+### Risk Assessment Matrix
+
+Use this to prioritize risks:
+```
+               Low Impact          High Impact
+Low Prob:      ✅ Accept           ⚠️ Monitor
+High Prob:     ⚠️ Monitor          🚨 Mitigate
+```
+
+### When to Update Risk Register
+
+**File:** `docs/templates/cross-cutting/risk-register.md`
+
+Update the risk register:
+1. **After initial stakeholder interviews** - Identify scope/alignment risks
+2. **After requirements drafted** - Identify technology/compliance risks
+3. **During requirements review** - Identify realistic assessment risks
+4. **Before Phase 2 start** - Final risk summary for architects
+
+### Risk Register Entry Format
+
+```markdown
+| Risk ID | Description | Likelihood | Impact | Owner | Mitigation | Status |
+|---------|-------------|-----------|--------|-------|-----------|--------|
+| R-001   | GDPR requirements unclear | High | High | Analyst | Legal review + requirements clarification | Active |
+| R-002   | Tech stack unproven | Medium | High | Architect | Spike/POC planned for Phase 2 | Monitoring |
+| R-003   | Small team, big scope | High | High | PM | Reduce scope or add resources | Planning |
+```
+
+### Risk Response Strategies
+
+**Mitigate:** Reduce probability or impact
+- Example: "GDPR requirements unclear" → Have legal/compliance expert review requirements
+
+**Avoidance:** Change scope to eliminate risk
+- Example: "Tech stack unproven" → Use proven technology
+
+**Acceptance:** Accept risk, plan contingency
+- Example: "Small team, big scope" → Accept schedule pressure, plan phased release
+
+**Transfer:** Move risk to vendor/partner
+- Example: "Compliance complex" → Use compliance-as-a-service platform
+
+### Escalation
+
+**When to escalate risk:**
+- High probability × High impact risks (critical)
+- Risks affecting project viability
+- Risks requiring executive decision
+- New risks discovered during requirements review
+
+**How to escalate:**
+1. Document in risk register with severity assessment
+2. Notify stakeholder/PM
+3. Include in requirements summary
+4. Add to decision log (decision on mitigation approach)
+
+### Phase 1 Risk Summary
+
+At end of Phase 1, provide:
+- 📊 Risk count by category (scope, technical, resource, market, compliance)
+- 📊 Risk heat map (high/medium/low priority)
+- 📊 Top 3 risks to monitor during Phase 2
+- 📊 Mitigations planned during Phase 2
+
+---
+
+## Decision Log Integration
+
+**Purpose:** Document major requirements decisions and rationale for future reference and traceability.
+
+### What Constitutes a Major Decision (Phase 1)
+
+In the requirements phase, document these decision types:
+
+**Scope Decisions:**
+- Define project success criteria
+- In/out of scope features
+- MVP definition vs. nice-to-haves
+- Priority rankings for features
+
+**Requirement Decisions:**
+- How will stakeholder conflicts be resolved?
+- Which compliance standards apply?
+- What are acceptable quality levels?
+- What integration points are required?
+
+**Process Decisions:**
+- Requirements approval process
+- Change control approach
+- Stakeholder sign-off requirements
+
+### Decision Log Format
+
+**File:** `docs/templates/cross-cutting/decision-log.md`
+
+**Entry Template:**
+
+```markdown
+## Decision #D-001: MVP Scope Definition for SaaS Platform
+
+**Date:** 2024-01-15
+**Decided By:** Product Manager (with stakeholder input)
+**Status:** Approved
+
+**Decision:**
+MVP includes: User registration, task creation, task assignment, team management
+MVP excludes: Mobile app, advanced reporting, webhooks, API
+
+**Context:**
+- 6-month timeline
+- Team of 3 engineers
+- Market needs quick-to-market solution
+- Can add advanced features in Phase 2
+
+**Alternatives Considered:**
+1. **All-in (full feature set)**
+   - Pros: Complete from day 1
+   - Cons: 12+ month timeline, high cost
+   - Rejected: Too slow for market window
+
+2. **Minimal (registration + tasks only)**
+   - Pros: Fastest release (3 months)
+   - Cons: Missing key features (team management)
+   - Rejected: Not competitive without team features
+
+**Rationale:**
+MVP balances speed (6 months) with competitiveness (team features).
+Phase 2 can add mobile, reporting, API based on customer feedback.
+
+**Implications:**
+- Phase 1: 6 months, 3 engineers, $150K budget
+- Phase 2: Planning in month 5 for Phase 2
+- Architecture must support adding mobile later
+
+**Revisit Trigger:**
+- If market conditions change (sooner release needed)
+- If customer feedback shows critical missing features
+```
+
+### Decision Recording Schedule
+
+**Phase 1 (Requirements) - When to Document:**
+- After defining scope boundaries
+- After identifying must-haves vs. nice-to-haves
+- After stakeholder conflicts resolved
+- After success criteria finalized
+- Before moving to Phase 2 planning
+
+**Frequency:** After each major milestone or decision point
+
+### Who Should Know About Decisions
+
+**Communicate decisions to:**
+- ✅ Team members (affects their work planning)
+- ✅ Stakeholders (their input was considered)
+- ✅ Future analysts (why decisions made matter for changes)
+- ✅ Project managers (affects timeline/scope)
+
+**Communication Method:**
+- Team meeting announcement + decision log entry
+- Email summary to key stakeholders
+- Add summary to handoff document for Phase 2 planning
+
+### Using Decision Log for Scope Management
+
+During Phase 1, decision log becomes the source of truth for:
+1. **Scope Definition**: What's in/out of MVP
+2. **Rationale**: Why we chose this scope
+3. **Alternatives**: What we considered (helps with "what if" questions)
+4. **Implications**: What this means for timeline, resources, quality
+
+**When scope change requested:**
+> "Let me check the decision log... Yes, feature X was explicitly excluded because of timeline constraints. If we add it, we need to either extend timeline or remove feature Y. Let me analyze impact."
+
+---
+
 ## Consulting Specialists
 
 When specialized expertise is needed:

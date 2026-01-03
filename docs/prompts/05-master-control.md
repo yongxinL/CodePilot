@@ -111,6 +111,275 @@ Use this agent when:
 **NEW (Full)**:
 - resource-allocation.md
 
+## Knowledge Capture
+
+**Purpose:** Document portfolio-level insights, resource allocation patterns, and organizational learnings for strategic reuse.
+
+**Phase 5 Integration Points - Capture Portfolio Learnings**
+
+After managing portfolio across multiple projects, capture these learnings:
+- ✅ Resource allocation patterns (what team compositions work well)
+- ✅ Project sequencing insights (optimal order for dependency management)
+- ✅ Dependency management lessons (hard vs soft dependencies)
+- ✅ Risk patterns specific to organization (portfolio-level risks)
+- ✅ Portfolio visualization techniques that work
+
+**When to Capture:**
+- After successful project sequence completion
+- When discovered effective resource allocation patterns
+- After resolving portfolio-level dependency conflicts
+- Identified portfolio risk patterns
+- Portfolio visualization or dashboard innovations
+
+**How to Capture:**
+1. Create entry in `docs/knowledge-base/patterns/` with descriptive filename
+2. Document: pattern name, portfolio size, resource profile, results
+3. Include dependency diagrams and team structure charts
+4. Document resource allocation decisions and outcomes
+5. Example filename: `multi-team-dependency-management-12-projects.md`
+
+**Example Pattern:**
+```markdown
+# Multi-Team Dependency Management (12 Projects)
+
+## Pattern
+Stagger project start dates to smooth resource utilization across teams
+
+## Portfolio Profile
+- 12 concurrent projects
+- 25 developers total
+- 5 projects have hard dependencies (can't parallelize)
+- 7 projects have soft dependencies (data sharing)
+
+## Resource Allocation Strategy
+- Core team (10): Work on critical path projects
+- Shared resources (8): Support dependent projects
+- Flex team (7): Handle new work as dependencies resolve
+
+## Results
+- Resource utilization: 92% (up from 65% without staggering)
+- Project delays from dependencies: 0 (down from 35%)
+- Reallocation frequency: Weekly (down from daily)
+
+## When to Use
+- 10+ concurrent projects
+- Complex dependency network
+- Shared resource pool across projects
+```
+
+**Knowledge Base Location:** `docs/knowledge-base/patterns/`
+
+**Timing:**
+- After each portfolio management cycle (quarterly/semi-annually)
+- Update when new organizational patterns emerge
+- Review with executive leadership for strategic planning
+
+**Benefits:**
+- 🎯 Better resource planning (allocation patterns available)
+- 🎯 Reduced scheduling conflicts (dependency patterns proven)
+- 🎯 Strategic alignment (portfolio patterns documented)
+- 🎯 Organizational capability growth (patterns reused across years)
+
+---
+
+## Risk Management Integration
+
+**Purpose:** Track and manage risks across the entire portfolio and ensure organizational alignment.
+
+### Risk Identification - Phase 5 (Master Control)
+
+**Portfolio-level risks:**
+- **Portfolio Risk**: Project delays cascade to dependent projects
+- **Resource Risk**: Resource allocation conflicts between projects
+- **Dependency Risk**: Critical dependencies fail → Multiple projects blocked
+- **Strategic Risk**: Portfolio doesn't align with business strategy
+- **Organizational Risk**: Key team member unavailable → Knowledge loss
+- **Market Risk**: Market conditions change → Portfolio priorities shift
+
+### Risk Portfolio View
+
+**Maintain portfolio-level risk register:**
+```markdown
+| Portfolio Risk | Impact | Projects Affected | Mitigation | Owner |
+|---|---|---|---|---|
+| Database migration delayed | Critical | Projects A, B, C (2 weeks each) | Parallel migration testing | Tech Lead |
+| Lead architect unavailable | Critical | All (knowledge loss) | Cross-training plan | HR/PM |
+| Market pivot needed | High | Project D (scope change) | Change manager review | Product |
+```
+
+### When to Update Risk Register
+
+**File:** `docs/templates/cross-cutting/risk-register.md`
+
+Update during Phase 5:
+1. **At portfolio start**: Identify cross-project risks and dependencies
+2. **Weekly reviews**: Update risk status based on project progress
+3. **Monthly**: Reassess portfolio impact of individual project risks
+4. **When changes occur**: New risks from scope changes, resource changes
+5. **Before next cycle**: Lessons learned from current portfolio
+
+### Risk Escalation & Governance
+
+**Risk governance structure:**
+
+```markdown
+**Risk Escalation Path:**
+1. Project Level (Phase Manager): Manage internal project risks
+2. Portfolio Level (Master Control): Assess cross-project impact
+3. Executive Level: Critical risks affecting business
+4. Board Level: Strategic/organizational risks
+
+**Risk Committee Meeting:**
+- Frequency: Weekly during high-risk periods, monthly otherwise
+- Participants: Project managers, architects, stakeholders
+- Agenda: Review top 10 risks, discuss escalations, approve mitigations
+- Output: Risk status dashboard, executive summary
+```
+
+### Post-Release Risk Monitoring
+
+**After projects release to production:**
+1. **Track known issues**: Monitor if any known issues occur
+2. **Measure performance**: Are SLAs being met?
+3. **Security monitoring**: Any security incidents?
+4. **Dependency health**: Are dependencies stable?
+5. **Resource health**: Team capacity still adequate?
+
+**Example Post-Release Dashboard:**
+```markdown
+PRODUCTION STATUS - WEEK 1 POST-RELEASE
+
+Project A: Stable ✅
+- Known Issue #3 (slow email): 0 occurrences
+- Performance: 98ms avg (target: <150ms)
+- Uptime: 99.95%
+
+Project B: Issue Detected ⚠️
+- Known Issue #7 (rate limiting): 12 occurrences
+- Workaround: Tell users to retry after 5 seconds
+- Action: Increase limits in next release
+
+Project C: Critical Issue 🔴
+- Unplanned downtime: 15 minutes (database connection pool exhausted)
+- Root cause: Load 2x higher than expected
+- Action: Add connection pool monitoring, increase pool size
+- Status: Resolved, monitoring
+```
+
+### Phase 5 Risk Summary
+
+At end of Phase 5 (portfolio cycle), provide:
+- 📊 Portfolio risk count by severity (critical, high, medium, low)
+- 📊 Risk resolution rate (resolved vs. total)
+- 📊 Cross-project impact analysis
+- 📊 Escalation summary
+- 📊 Lessons learned for next portfolio cycle
+
+---
+
+## Decision Log Integration
+
+**Purpose:** Document strategic portfolio decisions for organizational learning and future planning.
+
+### What Constitutes a Major Decision (Phase 5)
+
+In the master control phase, document these decision types:
+
+**Portfolio Sequencing Decisions:**
+- Project execution order and rationale
+- Dependency sequencing strategy
+- Parallel vs. sequential project decisions
+- Project start/stop timing
+
+**Resource Allocation Decisions:**
+- Team composition and assignments
+- Cross-project resource sharing
+- Skill development or hiring decisions
+- Contractor/vendor selection
+
+**Strategic Decisions:**
+- Portfolio alignment with business strategy
+- Project priority changes
+- Portfolio scope changes
+- Technology standards across portfolio
+
+### Decision Log Format
+
+**File:** `docs/templates/cross-cutting/decision-log.md`
+
+**Entry Template:**
+
+```markdown
+## Decision #D-005: Sequence Projects by Shared Infrastructure Dependencies
+
+**Date:** 2024-01-10
+**Decided By:** Portfolio Manager + Stakeholders
+**Status:** Approved
+
+**Decision:**
+Execute projects in dependency order:
+1. Database infrastructure (Weeks 1-4)
+2. Core API services (Weeks 4-10) - depends on #1
+3. Customer portal (Weeks 8-16) - depends on #2
+4. Admin dashboard (Weeks 12-18) - depends on #2
+5. Mobile app (Weeks 16-24) - depends on #2
+
+**Context:**
+- 5 projects, all need shared database and API infrastructure
+- Parallel approach causes infrastructure conflicts
+- Sequential approach ensures clean dependencies
+- Total timeline: 24 weeks (vs. 35 weeks if sequential)
+
+**Alternatives Considered:**
+1. **All parallel - each project builds own infrastructure**
+   - Pros: Independent teams, faster for each project
+   - Cons: Duplicate infrastructure, conflicts, waste
+   - Rejected: Infrastructure duplication unacceptable
+
+2. **Shared infrastructure sprint upfront**
+   - Pros: Clean dependency management
+   - Cons: Slower initial projects, scheduling rigid
+   - Rejected: Too slow for market timeline
+
+**Rationale:**
+Sequencing by dependencies optimizes shared infrastructure investment.
+Reduces conflicts and rework. Balances team utilization.
+
+**Resource Implications:**
+- Weeks 1-4: Infrastructure team (5 people)
+- Weeks 4-10: Infrastructure + API teams (10 people)
+- Weeks 10+: All teams working in parallel (25 people)
+
+**Revisit Trigger:**
+- If new project added mid-portfolio
+- If project cancelled, changes dependency chain
+- If resource availability changes significantly
+```
+
+### Decision Recording Schedule
+
+**Phase 5 (Master Control) - When to Document:**
+- At portfolio start (sequencing decisions)
+- When resource allocations made
+- When project priorities shift
+- When strategic direction changes
+- At portfolio reviews (monthly/quarterly)
+
+**Frequency:** 4-6 major decisions per portfolio cycle
+
+### Using Decision Log for Organizational Learning
+
+The decision log captures organizational knowledge:
+1. **Portfolio Patterns**: What sequencing works for multi-project?
+2. **Resource Strategies**: What team compositions successful?
+3. **Risk Patterns**: What risks appear across projects?
+4. **Success Factors**: What made portfolio successful?
+
+**For next portfolio planning:**
+> "Our previous portfolio with similar structure used this sequencing. Decision log shows why we chose that order. Should we reuse it for this new portfolio?"
+
+---
+
 ## Consulting Specialists
 
 (Same as v1.0)

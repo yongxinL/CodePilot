@@ -193,6 +193,266 @@ docs/artifacts/phase2-planning/tasks/
 
 **Token Cost**: +300 tokens
 
+## Knowledge Capture
+
+**Purpose:** Systematically capture architectural patterns and design learnings for reuse across projects.
+
+**Phase 2 Integration Points - Capture Architecture Patterns**
+
+After completing architecture design, capture these learnings:
+- ✅ Effective architecture patterns for this tech stack
+- ✅ Technology selection decision rationale
+- ✅ Lessons from previous projects using same stack
+- ✅ Performance optimization strategies discovered
+- ✅ Scalability approaches proven in similar projects
+
+**When to Capture:**
+- Successful architecture patterns tested in production
+- Technology selections that worked well (with rationale)
+- Design decisions that solved difficult architectural problems
+- Performance optimization discoveries
+- Lessons from technology failures/changes
+
+**How to Capture:**
+1. Create entry in `docs/knowledge-base/patterns/` with descriptive filename
+2. Document: architecture pattern name, tech stack, why it works, tradeoffs
+3. Include diagrams and code examples
+4. Note scalability limits and when to reconsider
+5. Example filename: `microservices-with-nodejs-postgres.md`
+
+**Example Pattern:**
+```markdown
+# Microservices Architecture with Node.js + PostgreSQL
+
+## Pattern
+Decompose application into independent microservices with async communication
+
+## Tech Stack
+- Node.js + Express for each service
+- PostgreSQL for data persistence
+- RabbitMQ/Kafka for async messaging
+- Docker for containerization
+
+## When It Works
+- Large teams (5+ engineers)
+- Complex domain with independent features
+- Need independent scaling per service
+- Team comfortable with operational complexity
+
+## Tradeoffs
+- Pros: Independent deployment, team autonomy, selective scaling
+- Cons: Operational complexity, distributed debugging harder, latency overhead
+
+## Performance Profile
+- Throughput: 1K req/s per service with 4 workers
+- Latency: +50-100ms due to messaging (acceptable for async operations)
+- Scalability: Linear to service count
+```
+
+**Knowledge Base Location:** `docs/knowledge-base/`
+
+**Capture Timing:**
+- After architecture review approval
+- Before implementation begins (so team learns patterns)
+- Update after deployment if outcomes differ from predictions
+
+**Benefits:**
+- 🎯 Faster architecture decisions (proven patterns available)
+- 🎯 Better technology choices (decisions documented with rationale)
+- 🎯 Reduced analysis paralysis (past analysis available)
+- 🎯 Team alignment (shared understanding of why decisions made)
+
+---
+
+## Risk Management Integration
+
+**Purpose:** Assess and track risks discovered during architecture and planning phase.
+
+### Risk Identification - Phase 2 (Planning)
+
+**Typical risks in planning phase:**
+- **Schedule Risk**: Unrealistic timeline for scope and team size → Missed deadlines
+- **Resource Risk**: Team members unavailable or skills gaps → Bottlenecks
+- **Dependency Risk**: External dependencies (APIs, third-party services) → Blocking issues
+- **Technical Risk**: Architecture choices unproven or complex → Implementation delays
+- **Integration Risk**: Components don't integrate as designed → Rework needed
+- **Infrastructure Risk**: DevOps requirements underestimated → Deployment issues
+
+### Risk Assessment During Architecture
+
+For each architectural choice, assess:
+1. **Probability**: How likely is this risk to occur?
+2. **Impact**: If it occurs, how bad is it? (schedule, cost, quality)
+3. **Detectability**: When would we know it's happening?
+4. **Mitigation**: What can we do to prevent or reduce it?
+
+### When to Update Risk Register
+
+**File:** `docs/templates/cross-cutting/risk-register.md`
+
+Update the risk register:
+1. **After architecture review** - Add technical/integration risks
+2. **After scheduling** - Add schedule/resource risks
+3. **After dependency analysis** - Add external dependency risks
+4. **During risk assessment** - Assign likelihood × impact severity
+5. **Before Phase 3 start** - Final risk mitigation plan
+
+### Phase 2 Risk Assessment
+
+For each identified risk, document:
+```markdown
+| Risk ID | Description | Probability | Impact | Detectability | Mitigation | Contingency |
+|---------|-------------|------------|--------|---------------|-----------|------------|
+| R-002   | Tech stack unproven | Medium | High | Week 2 of Phase 3 | Spike Phase 2 | Use proven stack |
+| R-004   | API availability unclear | Medium | High | Integration testing | Call vendor early | Build offline mode |
+```
+
+### Risk Mitigation Planning
+
+**For HIGH-PRIORITY risks, create mitigation plan:**
+1. **Primary mitigation**: What will we do to prevent this?
+2. **Contingency plan**: What if mitigation doesn't work?
+3. **Responsible party**: Who owns this risk?
+4. **Timeline**: When do we need to mitigate?
+5. **Trigger**: When do we implement contingency?
+
+**Example:**
+```markdown
+Risk: API response time > SLA (affects 50% of use cases)
+
+Mitigation:
+- Performance test API before Phase 3
+- Identify latency bottleneck
+- Work with vendor on optimization
+
+Contingency:
+- Implement client-side caching
+- Use API gateway for rate limiting
+- Queue non-critical API calls
+
+Owner: Architect
+Timeline: End of Phase 2
+Trigger: If API test shows >500ms latency
+```
+
+### Phase 2 Risk Summary
+
+At end of Phase 2, provide:
+- 📊 Risk count by phase (total identified, assessed, mitigated)
+- 📊 Top 5 risks to watch during Phase 3
+- 📊 Mitigation status (planned, in-progress, resolved)
+- 📊 Contingency plans for critical risks
+- 📊 Risk escalations (if any)
+
+---
+
+## Decision Log Integration
+
+**Purpose:** Document major architectural decisions and technology choices during planning.
+
+### What Constitutes a Major Decision (Phase 2)
+
+In the planning phase, document these decision types:
+
+**Architecture Decisions:**
+- Overall system architecture (monolith, microservices, serverless, etc.)
+- Technology stack selections (languages, frameworks, databases)
+- System design choices (sync vs. async, caching strategy, API design)
+- Integration approach (REST, GraphQL, message queues, etc.)
+- Data storage decisions (SQL vs. NoSQL, consistency requirements)
+
+**Methodology Decisions:**
+- Development approach (Agile, Waterfall, hybrid)
+- Testing strategy and coverage targets
+- Release frequency and deployment strategy
+- Communication and review processes
+
+### Decision Log Format
+
+**File:** `docs/templates/cross-cutting/decision-log.md`
+
+**Entry Template:**
+
+```markdown
+## Decision #D-002: Use PostgreSQL + Node.js/Express Architecture
+
+**Date:** 2024-02-01
+**Decided By:** Technical Architect (with team input)
+**Status:** Approved
+
+**Decision:**
+Primary architecture: Node.js/Express for API + PostgreSQL for data
+- Web framework: Express.js (lightweight, familiar)
+- Database: PostgreSQL (ACID, JSON support, team expertise)
+- Async messaging: Redis queue for background jobs
+
+**Context:**
+- Team very experienced with Node.js
+- Data requires ACID transactions
+- Expected scale: 10K concurrent users
+- Real-time features needed
+
+**Alternatives Considered:**
+1. **Python/Django + PostgreSQL**
+   - Pros: Fast to develop, excellent ORM
+   - Cons: Team less experienced
+   - Rejected: Learning curve risk
+
+2. **Microservices (Node.js services + PostgreSQL)**
+   - Pros: Independent scaling, team autonomy
+   - Cons: Operational complexity too high for team size
+   - Rejected: Team not ready for distributed systems
+
+3. **Serverless (AWS Lambda + DynamoDB)**
+   - Pros: No infrastructure management
+   - Cons: Expensive at scale, cold start issues
+   - Rejected: Cost and vendor lock-in
+
+**Rationale:**
+Node.js matches team expertise and timeline. PostgreSQL provides data reliability.
+Simple monolithic architecture minimizes operational overhead.
+
+**Performance Assumptions:**
+- API throughput: 1K req/s per instance
+- Database: <100ms response time
+- Real-time: WebSocket latency <500ms
+
+**Implications:**
+- Architecture: Single Node.js process + PostgreSQL
+- Infrastructure: App servers + managed DB
+- Team: No new languages to learn
+- Cost: ~$2K/month infrastructure at scale
+
+**Revisit Trigger:**
+- If scale exceeds 100K users
+- If real-time latency becomes critical issue
+- If operational overhead exceeds capacity
+```
+
+### Decision Recording Schedule
+
+**Phase 2 (Planning) - When to Document:**
+- After architecture review
+- After technology selections finalized
+- After major design decisions made
+- Before implementation begins
+- After stakeholder approval
+
+**Frequency:** After each architectural decision, min 5 major decisions per project
+
+### Using Decision Log for Implementation
+
+The decision log guides implementation:
+1. **Architecture Reference**: Developers know why architecture chosen
+2. **Technology Rationale**: Why specific tech selected (not debated later)
+3. **Performance Baseline**: What performance assumptions we're making
+4. **Revisit Triggers**: When we should reconsider decisions
+
+**When architecture question comes up in Phase 3:**
+> "Why didn't we use microservices? Let me check the decision log... Ah, we explicitly rejected microservices because of operational complexity. If we want to reconsider, we need to assess if we have expertise/tooling now."
+
+---
+
 ## Consulting Specialists
 
 (Same as v1.0 - unchanged)
