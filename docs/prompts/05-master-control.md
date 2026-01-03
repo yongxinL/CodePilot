@@ -380,6 +380,58 @@ The decision log captures organizational knowledge:
 
 ---
 
+## Session Management: Auto-Compression
+
+### How Token Compression Works During Portfolio Management
+
+For long multi-project orchestration sessions:
+
+**Multi-Phase Compression in Phase 5:**
+- Phases 1-4 (from all projects) may compress as completed
+- Phase 5 (current master control) NEVER compressed
+- Portfolio dashboard and metrics preserved
+
+**Token recovery across portfolio:**
+```
+Single Project Session:
+- Phase 1 compress: 42.5K tokens
+- Phase 2 compress: 35K tokens
+- Total freed: 77.5K tokens (available for Phase 3-5)
+
+Multi-Project Session (5 projects):
+- Each project Phase 1 compress: +42.5K tokens
+- Each project Phase 2 compress: +35K tokens
+- Total recovery: 5 × 77.5K = 387.5K tokens!
+- But limited by single 200K session limit
+- Therefore: Aggressive compression frees up room for 3+ projects in one session
+```
+
+**Portfolio always accessible:**
+- Master Control decisions never compressed
+- Portfolio metrics preserved
+- Cross-project dependency tracking available
+- Resource allocation data intact
+- Risk register accessible
+
+### Multi-Project Recovery
+
+If needing individual project Phase docs during portfolio management:
+```
+@docs Restore Project-A Phase 2: .recovery/project-a-phase2-compressed.md
+@docs Restore Project-B Phase 1: .recovery/project-b-phase1-compressed.md
+```
+
+### Portfolio-Level Metrics
+
+Even with compression:
+- Portfolio dashboards stay available
+- Project status tracking uninterrupted
+- Resource utilization metrics visible
+- Timeline compression metrics preserved
+- Risk aggregation available
+
+---
+
 ## Consulting Specialists
 
 (Same as v1.0)

@@ -463,6 +463,250 @@ Use when: Authentication, data handling, sensitive operations
 ```
 Use when: Data collection, AI/ML features, user tracking
 
+---
+
+## Session Management: Auto-Compression
+
+### How Token Compression Works
+
+During long requirements gathering sessions, the system automatically manages token usage:
+
+**If token usage reaches 75% of session limit:**
+1. System detects completed Phase 1 work
+2. Compresses requirements (50K → 7.5K tokens, 85% reduction)
+3. Keeps essential info: MVP, constraints, key decisions, risks
+4. Injects summary back into your context
+5. Frees up 42.5K tokens for continued work
+
+**You will see messages like:**
+```
+[AUTO-COMPRESSION ACTIVATED - 42.5K tokens freed]
+Compressed Phase 1 requirements summary:
+- MVP: User registration, task management, team features
+- Timeline: 6 months, 3 engineers
+- Key Risks: Node.js learning, real-time complexity
+- Full Phase 1 docs saved to: .recovery/phase1-compressed-20260103-1430.md
+Continuing with Phase 2 planning with fresh context...
+```
+
+**What gets compressed** (after Phase 1 complete):
+- Detailed user stories → 3-5 critical stories only
+- Full requirements document → 1-line summary + constraints
+- Exploratory Q&A → Key decisions only
+
+**What never gets compressed** (always available):
+- Your current work in Phase 1
+- Decision log (all decisions preserved)
+- Risk register (all risks tracked)
+
+### Recovery
+
+If you need the full Phase 1 documents after compression:
+```
+@docs Restore full Phase 1 from: .recovery/phase1-compressed-20260103-1430.md
+```
+
+The full requirements files are always available, compression only affects context usage.
+
+---
+
+## Competitive Analysis (Advanced+ Tier)
+
+**Purpose:** Understand market positioning and competitive advantages to inform requirements priorities
+
+**When to Use:** After initial requirements gathered, before Phase 2 starts
+**Tier:** Advanced+ only (not included in Core/Minimal)
+**Output:** `docs/artifacts/phase1-requirements/competitive-analysis.md`
+
+### Analysis Dimensions
+
+**Direct Competitors:**
+- Identify 3-5 direct competitors
+- Understand their core features
+- Analyze their strengths/weaknesses relative to planned product
+- Identify gaps your product can fill
+
+**Market Positioning:**
+- Where does this product fit in market (low-cost, premium, innovative)?
+- What's your unique value proposition?
+- Who are target users vs. competitors' users?
+- What needs are underserved?
+
+**Feature Differentiation:**
+- What features do competitors have that we're missing?
+- What features will we have that competitors don't?
+- Which features matter most to customers?
+- Where can we win/lose?
+
+**Pricing Strategy:**
+- Competitor pricing models (subscription, one-time, freemium)?
+- Price points and what they include
+- Value perception relative to price
+- Your proposed pricing strategy
+
+**Go-to-Market Strategy:**
+- How do competitors acquire customers?
+- What channels work best (B2B, B2C, enterprise, SMB)?
+- Marketing positioning and messaging
+- Sales approach and customer journey
+
+### Analysis Template
+
+```markdown
+# Competitive Analysis
+
+## Market Overview
+- Total addressable market (TAM): $[X]M
+- Market growth rate: [X]% annually
+- Number of established competitors: [N]
+- Market dynamics: Emerging/Growing/Mature/Declining
+
+## Direct Competitors
+
+### Competitor 1: [Name]
+**Market Position**: [Leader/Challenger/Follower]
+**Year Founded**: [Year]
+**Pricing Model**: [Freemium/Subscription/One-time]
+**User Base**: Approx [N]K users
+
+**Strengths**:
+- Enterprise adoption (major clients: X, Y, Z)
+- Market leader (60% market share)
+- Established brand
+
+**Weaknesses**:
+- Limited mobile support
+- Expensive ($500/month base)
+- Slow feature development
+
+**Feature Comparison**:
+| Feature | Competitor 1 | Our Product |
+|---------|--------------|-------------|
+| Real-time collab | ✅ | ✅ |
+| Mobile app | ❌ | ✅ |
+| AI assistance | ❌ | ✅ |
+| Offline mode | ✅ | ✅ |
+
+**Market Focus**: Enterprise teams (500+ employees)
+
+---
+
+### Competitor 2: [Name]
+...
+
+## Competitive Matrix
+
+```
+         FEATURE COMPLETENESS
+                ↑
+         │      │      │
+    High │ [C3] │[Ours]│[C1]
+         │      │      │
+         ├──────┼──────┼─→ MARKET SHARE
+    Low  │[C4]  │[C2]  │
+         │      │      │
+```
+
+## Our Advantages
+
+**Strengths vs. Competition**:
+1. **Lower price point** ($99/month vs. $200-500)
+2. **Better UX** (simpler onboarding, cleaner interface)
+3. **Mobile-first** (competitors are desktop-first)
+4. **Faster support response** (guaranteed 1-hour response)
+
+**Weaknesses vs. Competition**:
+1. **Smaller user base** (less social proof)
+2. **Fewer enterprise features** (initially)
+3. **New market entrant** (less brand recognition)
+4. **Limited integrations** (more to come)
+
+## Go-to-Market Strategy
+
+**Target Segment**: SMB teams (10-100 employees) in tech/services
+**Entry Strategy**:
+- Free tier to drive adoption
+- Freemium conversion to paid ($99-299/month)
+- Focus on mobile users initially
+
+**Key Messages**:
+- "The team app built for remote-first teams"
+- "Mobile-first collaboration, desktop-powerful"
+- "All features included at every price point"
+
+**Customer Acquisition**:
+- Product Hunt launch
+- Tech community partnerships
+- Content marketing (blog, podcast)
+- Influencer partnerships
+
+## Differentiation Roadmap
+
+**Phase 1**: Launch with mobile advantage, lower price
+**Phase 2**: Add AI-assisted features (unique advantage)
+**Phase 3**: Build enterprise compliance (catch up to leaders)
+**Phase 4**: AI becomes differentiator as it matures
+
+## Risk Analysis
+
+**Market Risks**:
+- Large competitors (Slack, Microsoft) could add these features
+  Mitigation: Move fast, build community loyalty
+- Market consolidation (acquihires reduce competitors)
+  Mitigation: Build valuable, defensible products
+
+**Competitive Response**:
+- Competitors likely to lower prices when we enter
+  Mitigation: Build loyalty through superior UX/support
+```
+
+### How Competitive Analysis Informs Requirements
+
+**Example: Using analysis to prioritize features**
+
+Without analysis:
+- "Should we build mobile app?" → Unclear
+
+With competitive analysis:
+- "Competitors don't prioritize mobile. All users survey shows 60% want mobile. We build it as Phase 1 feature → Competitive advantage"
+
+**Using analysis for positioning:**
+
+Without:
+- "Build a collaboration tool" → Generic description
+
+With:
+- "Build the mobile-first collaboration platform for distributed teams" → Clear positioning
+
+**Using analysis for pricing:**
+
+Without:
+- "Price it at $100/month" → Just a guess
+
+With:
+- "Competitors charge $200-500. Users prefer value. Price at $99/month for SMB market." → Data-driven
+
+### Invocation
+
+To generate competitive analysis during Phase 1:
+
+```
+@docs Generate competitive analysis for [product].
+
+Include:
+- Direct competitors (top 3-5)
+- Market positioning
+- Feature differentiation matrix
+- Pricing strategy
+- Go-to-market approach
+- Competitive advantages and risks
+```
+
+**Document location**: `docs/artifacts/phase1-requirements/competitive-analysis.md`
+**Update frequency**: Annually or when major competitive changes occur
+
+---
+
 ## Quality Standards
 
 Your requirements must be:

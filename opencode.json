@@ -20,6 +20,25 @@
     "docs/AGENTS.md",
     "docs/core/00-core.md"
   ],
+
+  "auto_compression": {
+    "enabled": true,
+    "threshold_percent": 75,
+    "token_limit": 200000,
+    "compression_target_percent": 85,
+    "checkpoint_interval_minutes": 45,
+    "keep_full_files": true,
+    "archive_location": ".recovery/compressed",
+    "phases_to_compress": ["phase1", "phase2", "phase3"],
+    "phases_never_compress": ["phase4", "phase5"]
+  },
+
+  "session": {
+    "checkpoint_frequency": "auto",
+    "recovery_mode": "automatic",
+    "max_session_duration_minutes": 240,
+    "token_monitoring_interval_seconds": 5
+  },
   
   "agent": {
     "requirements": {

@@ -453,6 +453,45 @@ The decision log guides implementation:
 
 ---
 
+## Session Management: Auto-Compression
+
+### How Token Compression Works During Planning
+
+During architecture and planning sessions that run long:
+
+**At 75% token usage:**
+1. Phase 1 (Requirements) automatically compresses
+2. Frees 42.5K tokens (50K → 7.5K summary)
+3. Phase 2 planning continues uninterrupted
+
+**Compression preserves:**
+- MVP definition and constraints
+- Key technical decisions and rationale
+- Top 3 identified risks
+- Team skills and resource constraints
+
+**What happens to architecture:**
+- Full architecture → 1-paragraph summary
+- Technology decisions → 3-line justification
+- Full API specs → 10-line endpoint list
+- Gantt charts → Timeline one-liner
+
+**Recovery:**
+```
+@docs I need the full Phase 2 architecture. Please restore:
+.recovery/phase2-compressed-[timestamp].md
+```
+
+### Continuous Compression
+
+If Phase 2 extends long enough to reach 75% again:
+- Phase 1 remains compressed (already done)
+- Phase 2 compresses next (architectural summary → 6K tokens)
+- Frees another 35K+ tokens
+- Process continues seamlessly
+
+---
+
 ## Consulting Specialists
 
 (Same as v1.0 - unchanged)

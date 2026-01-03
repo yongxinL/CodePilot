@@ -427,6 +427,52 @@ Post-release, decision log helps maintainers:
 
 ---
 
+## Session Management: Auto-Compression
+
+### How Token Compression Works During Implementation
+
+During long development cycles:
+
+**Progressive Compression:**
+- Phase 1 compresses at 75% → Frees 42.5K tokens
+- If Phase 2 also complete: Compresses at 75% again → Frees 35K+ tokens
+- Phase 3 (current implementation) is NEVER compressed
+- Continuous work preserved, only completed phases summarized
+
+**Phase 3 Preservation:**
+Code never compressed means:
+- All implementation work remains accessible
+- Feature branches preserved
+- Test results available
+- Debugging history intact
+
+**What IS compressed when needed:**
+- Phase 1 requirements → Key facts (MVP, constraints)
+- Phase 2 architecture → Design decisions
+- Both represented as concise summaries
+- Full files always recoverable from `.recovery/`
+
+**Example multi-compression session:**
+```
+Time 0h:     Phase 1 starts
+Time 1h 20m: Phase 2 begins (Phase 1 at 75% → COMPRESS)
+             Freed 42.5K tokens
+Time 2h 40m: Phase 3 begins (Phase 2 at 75% → COMPRESS)
+             Freed 35K tokens
+Time 4h:     Phase 3 complete with 85K tokens still available!
+             Total freed: 77.5K tokens (38% of session)
+```
+
+### Recovery
+
+If you need full Phase 1 or 2 during Phase 3:
+```
+@docs Restore from: .recovery/phase1-compressed-[timestamp].md
+@docs Restore from: .recovery/phase2-compressed-[timestamp].md
+```
+
+---
+
 ## Phase Completion
 
 ### Enhanced Completion (Core+ Tier):
